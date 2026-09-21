@@ -2,7 +2,7 @@ const router = require('express').Router()
 const isSignedIn = require('../middleware/is-signed-in')
 const Item =require("../models/Item")
 
-router.get('/items', (req, res) => {
+router.get('/', (req, res) => {
     res.redirect('/items/all-items')
 });
 
@@ -87,11 +87,8 @@ router.put('/:id', isSignedIn, async (req, res) => {
                 date,
                 type,
                 image
-            },
-            {
-                new: true
-            }
-        );
+            }, { new: true }
+        )
 
         console.log(updatedItem);
 
