@@ -7,8 +7,8 @@ Lost Items Website
 This website helps students or anyone who lost an item or found an item post it in website and they can found the item and claims it.
 
 ## Screenshots
-1.ERD
-![Lost Items ERD](./erd/Lost%20Items%20ERD.drawio.png)
+1. Lost Items ERD
+![Lost Items ERD](./erd/lost-items-erd.png)
 
 ## Technologies Used
 
