@@ -58,6 +58,17 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/:id/edit', isSignedIn, async (req, res) => {
+    try {
+        const foundItem = await Item.findById(req.params.id);
 
+        res.render('items/edit-item.ejs', {
+            item: foundItem
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 module.exports = router
