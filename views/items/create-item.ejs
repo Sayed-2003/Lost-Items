@@ -3,9 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Item</title>
 </head>
+
 <body>
-    
+
+    <h1>Report Lost or Found Item</h1>
+
+    <form action="/items/create" method="POST">
+
+        <label for="title">Item Name:</label>
+        <input type="text" id="title" name="title" required>
+
+        <br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <br><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Documents">Documents</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <br><br>
+
+        <label for="type">Item Type:</label>
+        <select id="type" name="type" required>
+            <option value="">Select type</option>
+            <option value="Lost">Lost</option>
+            <option value="Found">Found</option>
+        </select>
+
+        <br><br>
+
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image">
+
+        <br><br>
+
+        <button type="submit">Submit Item</button>
+
+    </form>
+
 </body>
 </html>
