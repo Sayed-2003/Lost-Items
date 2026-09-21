@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lost & Found Items</title>
 </head>
+
 <body>
-    
+
+    <h1>Lost & Found Items</h1>
+
+    <% items.forEach(item => { %>
+
+        <div>
+            <h2><%= item.title %></h2>
+
+            <p><strong>Description:</strong> <%= item.description %></p>
+
+            <p><strong>Category:</strong> <%= item.category %></p>
+
+            <p><strong>Location:</strong> <%= item.location %></p>
+
+            <p><strong>Date:</strong> <%= item.date.toDateString() %></p>
+
+            <p><strong>Type:</strong> <%= item.type %></p>
+
+            <% if (item.image) { %>
+                <img src="<%= item.image %>" alt="<%= item.title %>" width="200">
+            <% } %>
+
+        </div>
+
+        <hr>
+
+    <% }) %>
+
 </body>
 </html>
