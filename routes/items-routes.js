@@ -29,4 +29,18 @@ router.post('/create',isSignedIn, async (req, res) => {
     }
 });
 
+
+router.get('/all-items', async (req, res) => {
+    try {
+        const foundItems = await Item.find().populate('owner');
+
+        res.render('items/all-items.ejs', {
+            items: foundItems
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 module.exports = router
