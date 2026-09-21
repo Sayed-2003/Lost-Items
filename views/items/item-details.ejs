@@ -57,8 +57,17 @@
 
                             <a href="/items/all-items">Back to all items</a>
 
+                            <br><br>
 
+                        <% if (item.owner._id != user._id) { %>
+                <form action="" method="post">
 
+                    <label for="message"></label>
+                    <input id="message" type="text" name="message">
+
+                    <button>Claim Item</button>
+                        </form>
+                     <% } %>
 
 </body>
 
