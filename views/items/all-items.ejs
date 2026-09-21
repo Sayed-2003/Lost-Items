@@ -10,43 +10,49 @@
 
     <h1>Lost & Found Items</h1>
 
-    <% for (const item of items) { %>
+    <% for (const oneItem of items) { %>
 
         <div>
-            <h2><%= item.title %></h2>
+            <h2><%= oneItem.title %></h2>
 
             <p>
                 <strong>Description:</strong>
-                <%= item.description %>
+                <%= oneItem.description %>
             </p>
 
             <p>
                 <strong>Category:</strong>
-                <%= item.category %>
+                <%= oneItem.category %>
             </p>
 
             <p>
                 <strong>Location:</strong>
-                <%= item.location %>
+                <%= oneItem.location %>
             </p>
 
             <p>
                 <strong>Date:</strong>
-                <%= item.date.toDateString() %>
+                <%= oneItem.date.toDateString() %>
             </p>
 
             <p>
                 <strong>Type:</strong>
-                <%= item.type %>
+                <%= oneItem.type %>
             </p>
 
-            <% if (item.image) { %>
-                <img src="<%= item.image %>" alt="<%= item.title %>" width="200">
+            <% if (oneItem.image) { %>
+                <img src="<%= oneItem.image %>" alt="<%= oneItem.title %>" width="200">
             <% } %>
 
             <br>
 
-            <a href="/items/<%= item._id %>">View Details</a>
+            <a href="/items/<%= oneItem._id %>">View Details</a>
+
+                <br><br>
+             <form action="/items/<%= oneItem._id %>?_method=DELETE" method="post">
+        <button>Delete</button>
+    </form>
+
         </div>
 
         <hr>

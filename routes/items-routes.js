@@ -99,4 +99,16 @@ router.put('/:id', isSignedIn, async (req, res) => {
     }
 })
 
+router.delete('/:id',isSignedIn,async(req,res)=>{
+        const foundItem = await Item.findById(req.params.id)
+        if(!foundItem.owner.equals(req.session.user._id)){
+           return res.send('You are not the owner')
+        }
+        const deletedItem = await Item.findByIdAndDelete(req.params.id)
+        console.log(deletedItem)
+        res.redirect('/items')
+    
+})
+
+
 module.exports = router
