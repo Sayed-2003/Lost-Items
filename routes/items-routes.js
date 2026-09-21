@@ -29,7 +29,7 @@ router.post('/create',isSignedIn, async (req, res) => {
     }
 });
 
-
+// display all items
 router.get('/all-items', async (req, res) => {
     try {
         const foundItems = await Item.find().populate('owner');
@@ -42,5 +42,22 @@ router.get('/all-items', async (req, res) => {
         console.log(error);
     }
 });
+
+
+// display each user item 
+router.get('/:id', async (req, res) => {
+    try {
+        const foundItem = await Item.findById(req.params.id).populate('owner');
+
+        res.render('items/item-details.ejs', {
+            item: foundItem
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 
 module.exports = router

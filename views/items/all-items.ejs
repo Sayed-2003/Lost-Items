@@ -10,30 +10,48 @@
 
     <h1>Lost & Found Items</h1>
 
-    <% items.forEach(item => { %>
+    <% for (const item of items) { %>
 
         <div>
             <h2><%= item.title %></h2>
 
-            <p><strong>Description:</strong> <%= item.description %></p>
+            <p>
+                <strong>Description:</strong>
+                <%= item.description %>
+            </p>
 
-            <p><strong>Category:</strong> <%= item.category %></p>
+            <p>
+                <strong>Category:</strong>
+                <%= item.category %>
+            </p>
 
-            <p><strong>Location:</strong> <%= item.location %></p>
+            <p>
+                <strong>Location:</strong>
+                <%= item.location %>
+            </p>
 
-            <p><strong>Date:</strong> <%= item.date.toDateString() %></p>
+            <p>
+                <strong>Date:</strong>
+                <%= item.date.toDateString() %>
+            </p>
 
-            <p><strong>Type:</strong> <%= item.type %></p>
+            <p>
+                <strong>Type:</strong>
+                <%= item.type %>
+            </p>
 
             <% if (item.image) { %>
                 <img src="<%= item.image %>" alt="<%= item.title %>" width="200">
             <% } %>
 
+            <br>
+
+            <a href="/items/<%= item._id %>">View Details</a>
         </div>
 
         <hr>
 
-    <% }) %>
+    <% } %>
 
 </body>
 </html>
