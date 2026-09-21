@@ -10,13 +10,13 @@ router.post('/create',isSignedIn, async (req, res) => {
     try {
         const{title,description,category,location,date,type,image} = req.body
         const createdItem = await Item.create({
-            title: title,
-            description: description,
-            category: category,
-            location: location,
-            date: date,
-            type: type,
-            image: image,
+            title,
+            description,
+            category,
+            location,
+            date,
+            type,
+            image,
             owner: req.session.user._id
         })
 
@@ -70,5 +70,33 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
         console.log(error);
     }
 });
+
+router.put('/:id', isSignedIn, async (req, res) => {
+    try {
+        const { title, description, category, location, date, type, image } = req.body;
+
+        const updatedItem = await Item.findByIdAndUpdate(req.params.id,
+            {
+                title,
+                description,
+                category,
+                location,
+                date,
+                type,
+                image
+            },
+            {
+                new: true
+            }
+        );
+
+        console.log(updatedItem);
+
+        res.redirect('/items')
+
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 module.exports = router
