@@ -36,6 +36,10 @@ const itemSchema = new mongoose.Schema({
     image:{
         type:String
     },
+    isDeleted:{
+        type:Boolean,
+        default:false
+    },
 
     owner: {
         type: mongoose.Schema.Types.ObjectId,

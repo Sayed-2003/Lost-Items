@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= item.title %></title>
+    <title>
+        <%= item.title %>
+    </title>
 </head>
 
 <body>
 
-    <h1><%= item.title %></h1>
+    <h1>
+        <%= item.title %>
+    </h1>
 
     <% if (item.image) { %>
         <img src="<%= item.image %>" alt="<%= item.title %>" width="300">
-    <% } %>
+        <% } %>
 
-    <p>
-        <strong>Description:</strong>
-        <%= item.description %>
-    </p>
+            <p>
+                <strong>Description:</strong>
+                <%= item.description %>
+            </p>
 
-    <p>
-        <strong>Category:</strong>
-        <%= item.category %>
-    </p>
+            <p>
+                <strong>Category:</strong>
+                <%= item.category %>
+            </p>
 
-    <p>
-        <strong>Location:</strong>
-        <%= item.location %>
-    </p>
+            <p>
+                <strong>Location:</strong>
+                <%= item.location %>
+            </p>
 
-    <p>
-        <strong>Date:</strong>
-        <%= item.date.toDateString() %>
-    </p>
+            <p>
+                <strong>Date:</strong>
+                <%= item.date.toDateString() %>
+            </p>
 
-    <p>
-        <strong>Type:</strong>
-        <%= item.type %>
-    </p>
+            <p>
+                <strong>Type:</strong>
+                <%= item.type %>
+            </p>
 
-    <% if (item.owner) { %>
-        <p>
-            <strong>Posted by:</strong>
-            <%= item.owner.name %>
-        </p>
-    <% } %>
+            <% if (item.owner) { %>
+                <p>
+                    <strong>Posted by:</strong>
+                    <%= item.owner.name %>
+                </p>
+                <% } %>
 
-    <a href="/items/<%= item._id %>/edit">Edit Item</a>
-    
-    <a href="/items/all-items">Back to all items</a>
+                    <% if (item.owner._id.equals(user._id)) { %>
+                        <a href="/items/<%= item._id %>/edit">Edit Item</a>
+                        <% } %>
 
-    
+                            <a href="/items/all-items">Back to all items</a>
 
-   
+
+
+
 </body>
+
 </html>

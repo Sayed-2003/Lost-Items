@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const isSignedIn = require('../middleware/is-signed-in')
-const Item =require("../models/Item")
+const Item = require("../models/Item")
 
 router.get('/', (req, res) => {
     res.redirect('/items/all-items')
@@ -10,9 +10,9 @@ router.get('/create', (req, res) => {
     res.render('items/create-item.ejs')
 })
 
-router.post('/create',isSignedIn, async (req, res) => {
+router.post('/create', isSignedIn, async (req, res) => {
     try {
-        const{title,description,category,location,date,type,image} = req.body
+        const { title, description, category, location, date, type, image } = req.body
         const createdItem = await Item.create({
             title,
             description,
@@ -26,7 +26,7 @@ router.post('/create',isSignedIn, async (req, res) => {
 
         console.log(createdItem);
 
-        res.redirect('/items/create')
+        res.redirect('/items/all-items')
 
     } catch (error) {
         console.log(error)
@@ -36,9 +36,9 @@ router.post('/create',isSignedIn, async (req, res) => {
 // display all items
 router.get('/all-items', async (req, res) => {
     try {
-        const foundItems = await Item.find().populate('owner')
+        const foundItems = await Item.find({ isDeleted: false }).populate('owner')
 
-        res.render('items/all-items.ejs', { items: foundItems})
+        res.render('items/all-items.ejs', { items: foundItems })
 
     } catch (error) {
         console.log(error)
@@ -49,7 +49,7 @@ router.get('/all-items', async (req, res) => {
 // display each user item 
 router.get('/:id', async (req, res) => {
     try {
-        const foundItem = await Item.findById(req.params.id).populate('owner')
+        const foundItem = await Item.findOne({ _id: req.params.id, isDeleted: false }).populate('owner')
 
         res.render('items/item-details.ejs', { item: foundItem })
 
@@ -60,9 +60,10 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:id/edit', isSignedIn, async (req, res) => {
     try {
-        const foundItem = await Item.findById(req.params.id)
+        const { id } = req.params
+        const foundItem = await Item.findById(id)
 
-        res.render('items/edit-item.ejs', { item: foundItem})
+        res.render('items/edit-item.ejs', { item: foundItem })
 
     } catch (error) {
         console.log(error)
@@ -72,8 +73,8 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
 router.put('/:id', isSignedIn, async (req, res) => {
     try {
         const { title, description, category, location, date, type, image } = req.body
-
-        const updatedItem = await Item.findByIdAndUpdate(req.params.id,
+        const { id } = req.params
+        const updatedItem = await Item.findByIdAndUpdate(id,
             {
                 title,
                 description,
@@ -94,19 +95,21 @@ router.put('/:id', isSignedIn, async (req, res) => {
     }
 })
 
-router.delete('/:id',isSignedIn,async(req,res)=>{
+router.delete('/:id', isSignedIn, async (req, res) => {
 
-        const foundItem = await Item.findById(req.params.id)
+    const { id } = req.params
 
-        if(!foundItem.owner.equals(req.session.user._id)){
-           return res.send('You are not the owner')
-        }
-        const deletedItem = await Item.findByIdAndDelete(req.params.id)
+    const foundItem = await Item.findById(id)
 
-        console.log(deletedItem)
+    if (!foundItem.owner.equals(req.session.user._id)) {
+        return res.send('You are not the owner')
+    }
+    const deletedItem = await Item.findByIdAndUpdate(id, { isDeleted: true })
 
-        res.redirect('/items')
-    
+    console.log(deletedItem)
+
+    res.redirect('/items')
+
 })
 
 

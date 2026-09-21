@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,13 @@
 
     <h1>Lost & Found Items</h1>
 
+
     <% for (const oneItem of items) { %>
 
         <div>
-            <h2><%= oneItem.title %></h2>
+            <h2>
+                <%= oneItem.title %>
+            </h2>
 
             <p>
                 <strong>Description:</strong>
@@ -42,22 +46,29 @@
 
             <% if (oneItem.image) { %>
                 <img src="<%= oneItem.image %>" alt="<%= oneItem.title %>" width="200">
-            <% } %>
+                <% } %>
 
-            <br>
+                    <br>
 
-            <a href="/items/<%= oneItem._id %>">View Details</a>
+                    <a href="/items/<%= oneItem._id %>">View Details</a>
 
-                <br><br>
-             <form action="/items/<%= oneItem._id %>?_method=DELETE" method="post">
-        <button>Delete</button>
-    </form>
+                    <br><br>
+
+                    <% if (oneItem.owner._id.equals(user._id)) { %>
+
+                        <form action="/items/<%= oneItem._id %>?_method=DELETE" method="post">
+
+                            <button>Delete</button>
+
+                            <% } %>
+                        </form>
 
         </div>
 
         <hr>
 
-    <% } %>
+        <% } %>
 
 </body>
+
 </html>
