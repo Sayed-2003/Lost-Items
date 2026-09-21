@@ -2,6 +2,10 @@ const router = require('express').Router()
 const isSignedIn = require('../middleware/is-signed-in');
 const Item =require("../models/Item")
 
+router.get('/items', (req, res) => {
+    res.redirect('/items/all-items');
+});
+
 router.get('/create', (req, res) => {
     res.render('items/create-item.ejs')
 })
@@ -35,8 +39,7 @@ router.get('/all-items', async (req, res) => {
         const foundItems = await Item.find().populate('owner');
 
         res.render('items/all-items.ejs', {
-            items: foundItems
-        });
+            items: foundItems});
 
     } catch (error) {
         console.log(error);
@@ -71,32 +74,5 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
     }
 });
 
-router.put('/:id', isSignedIn, async (req, res) => {
-    try {
-        const { title, description, category, location, date, type, image } = req.body;
-
-        const updatedItem = await Item.findByIdAndUpdate(req.params.id,
-            {
-                title,
-                description,
-                category,
-                location,
-                date,
-                type,
-                image
-            },
-            {
-                new: true
-            }
-        );
-
-        console.log(updatedItem);
-
-        res.redirect('/items')
-
-    } catch (error) {
-        console.log(error);
-    }
-})
 
 module.exports = router
