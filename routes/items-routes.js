@@ -38,8 +38,7 @@ router.get('/all-items', async (req, res) => {
     try {
         const foundItems = await Item.find().populate('owner')
 
-        res.render('items/all-items.ejs', {
-            items: foundItems});
+        res.render('items/all-items.ejs', { items: foundItems})
 
     } catch (error) {
         console.log(error)
@@ -52,9 +51,7 @@ router.get('/:id', async (req, res) => {
     try {
         const foundItem = await Item.findById(req.params.id).populate('owner')
 
-        res.render('items/item-details.ejs', {
-            item: foundItem
-        });
+        res.render('items/item-details.ejs', { item: foundItem })
 
     } catch (error) {
         console.log(error)
@@ -65,9 +62,7 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
     try {
         const foundItem = await Item.findById(req.params.id)
 
-        res.render('items/edit-item.ejs', {
-            item: foundItem
-        });
+        res.render('items/edit-item.ejs', { item: foundItem})
 
     } catch (error) {
         console.log(error)
@@ -100,12 +95,16 @@ router.put('/:id', isSignedIn, async (req, res) => {
 })
 
 router.delete('/:id',isSignedIn,async(req,res)=>{
+
         const foundItem = await Item.findById(req.params.id)
+
         if(!foundItem.owner.equals(req.session.user._id)){
            return res.send('You are not the owner')
         }
         const deletedItem = await Item.findByIdAndDelete(req.params.id)
+
         console.log(deletedItem)
+
         res.redirect('/items')
     
 })

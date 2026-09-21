@@ -14,9 +14,10 @@ const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
 // routes Imports
-const authController = require("./routes/auth.routes.js");
-const indexController = require("./routes/index.routes.js");
-const itemsRouter = require('./routes/items-routes.js');
+const authController = require("./routes/auth.routes.js")
+const indexController = require("./routes/index.routes.js")
+const itemsRouter = require('./routes/items-routes.js')
+const claimsRouter = require('./routes/claims-routes.js')
 
 
 // Middleware
@@ -55,7 +56,8 @@ app.use(passUserToView)
 // Routes go here
 app.use('/auth',authController)
 app.use('/',indexController)
-app.use('/items', itemsRouter);
+app.use('/items', itemsRouter)
+app.use('/claims',claimsRouter)
 
 
 
