@@ -24,13 +24,36 @@ router.post('/create/:itemId', isSignedIn, async (req, res) => {
             message: req.body.message
         });
 
-        res.redirect('/items/all-items');
+        res.redirect('/items/all-items')
 
     } catch (error) {
         console.log(error);
     }
 });
 
+router.get('/requests',isSignedIn, async (req, res) => {
+    try {
+        const foundClaim = await Claim.find({status: 'Pending'}).populate('claimant')
+
+        res.render('claims/user-claims.ejs', { Claim: foundClaim })
+
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+router.put('/:id', async(req,res)=>{
+    const foundClaim = await Claim.findByIdAndUpdate(req.params.id,{
+        status: 'Approved'
+    })
+    res.redirect('/claims/requests')
+})
 
 
+router.put('/:id', async(req,res)=>{
+    const foundClaim = await Claim.findByIdAndUpdate(req.params.id,{
+        status: 'Rejected'
+    })
+    res.redirect('/claims/requests')
+})
 module.exports = router

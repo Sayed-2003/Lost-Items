@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Claims</title>
+</head>
+<body>
+    <h1>User Requests</h1>
+
+    <% for(const oneClaim of Claim){ %>
+        <p>username: <%= oneClaim.claimant.username %></p>
+        <p>message: <%= oneClaim.message %></p>
+        <p>status: <%= oneClaim.status %></p>
+
+        <form action="/claims/<%= oneClaim._id %>?_method=PUT" method="post">
+
+            <button id="Approved">Approved</button>
+
+        </form>
+
+         <form action="" method="post">
+
+            <button id="rejected">Rejected</button>
+
+        </form>
+
+        <% } %>
+</body>
+</html>
