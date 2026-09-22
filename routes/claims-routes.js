@@ -35,7 +35,9 @@ router.get('/requests',isSignedIn, async (req, res) => {
     try {
         const foundClaim = await Claim.find({status: 'Pending'}).populate('claimant item')
 
-        res.render('claims/user-claims.ejs', { Claim: foundClaim })
+        const filteredClaims = foundClaim.filter((claim)=>claim.item.owner == req.session.user._id)
+        
+        res.render('claims/user-claims.ejs', { Claim: filteredClaims , user: req.session.user._id})
 
     } catch (error) {
         console.log(error)

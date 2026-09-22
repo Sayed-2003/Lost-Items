@@ -83,7 +83,7 @@ router.put('/:id', isSignedIn, async (req, res) => {
                 date,
                 type,
                 image
-            }, { new: true }
+             }, { new: true }
         )
 
         console.log(updatedItem);
