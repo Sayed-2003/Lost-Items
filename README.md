@@ -6,6 +6,7 @@ Lost Items Website
 ## Overview
 Campus Lost & Found is a web application designed to help students report, find, and recover lost items on campus. Users can create accounts, post lost or found items, view item details, and submit claims for items they believe belong to them. Item owners can manage their posted items and review claims submitted by other users.
 
+
 ## Screenshots
 
 ## Technologies Used
