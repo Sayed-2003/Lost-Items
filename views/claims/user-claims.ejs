@@ -9,8 +9,11 @@
     <h1>User Requests</h1>
 
     <% for(const oneClaim of Claim){ %>
-        <p>username: <%= oneClaim.claimant.username %></p>
-        <p>message: <%= oneClaim.message %></p>
+       <p>Title: <%= oneClaim.item.title %></p> 
+       <p>Description: <%= oneClaim.item.description %></p>
+       <p>Image: <%= oneClaim.item.image %></p>
+        <p>Username: <%= oneClaim.claimant.username %></p>
+        <p>Message: <%= oneClaim.message %></p>
         <p>status: <%= oneClaim.status %></p>
 
         <form action="/claims/<%= oneClaim._id %>?_method=PUT" method="post">

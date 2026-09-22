@@ -33,7 +33,7 @@ router.post('/create/:itemId', isSignedIn, async (req, res) => {
 
 router.get('/requests',isSignedIn, async (req, res) => {
     try {
-        const foundClaim = await Claim.find({status: 'Pending'}).populate('claimant')
+        const foundClaim = await Claim.find({status: 'Pending'}).populate('claimant item')
 
         res.render('claims/user-claims.ejs', { Claim: foundClaim })
 
