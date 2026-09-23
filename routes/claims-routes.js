@@ -68,4 +68,16 @@ router.put('/:id/reject', isSignedIn, async (req, res) => {
         res.redirect('/claims/requests')
     }
 })
+
+router.get('/my-claims', isSignedIn, async (req, res) => {
+    try {
+        const foundClaims = await Claim.find({ claimant: req.session.user._id}).populate('item')
+
+        res.render('claims/my-claims.ejs', {Claim: foundClaims})
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 module.exports = router
