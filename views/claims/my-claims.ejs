@@ -7,7 +7,11 @@
 </head>
 <body>
     <h1>My Claims</h1>
+<% if (Claim.length === 0) { %>
 
+    <h1>You have not submitted any claims.</h1>
+
+<% } else { %>
 <% for (const oneClaim of Claim) { %>
 
     <div>
@@ -22,6 +26,7 @@
         </a>
     </div>
 
+<% } %>
 <% } %>
 </body>
 </html>

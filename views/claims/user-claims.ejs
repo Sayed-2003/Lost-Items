@@ -8,6 +8,11 @@
 <body>
     <h1>User Requests</h1>
 
+    <% if (Claim.length === 0) { %>
+
+    <p>You have no pending requests.</p>
+
+<% } else { %>
     
     <% for(const oneClaim of Claim){ %>
 
@@ -35,6 +40,7 @@
     <button id="rejected">Rejected</button>
 </form>
 
-<% } %>     
+<% } %>   
+<% } %>  
 </body>
 </html>
