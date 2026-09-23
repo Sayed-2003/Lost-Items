@@ -11,7 +11,7 @@
 
     <h1>Edit Item</h1>
 
-    <form action="/items/<%= item._id %>?_method=PUT" method="POST">
+    <form action="/items/<%= item._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
         <label for="title">Item Name:</label>
         <input
@@ -74,9 +74,11 @@
 
         <br><br>
 
+        <p>Original Image</p>
+        <img src="<%= item.image %>" alt="">
         <label for="image">Image URL:</label>
         <input
-            type="text"
+            type="file"
             id="image"
             name="image"
             value="<%= item.image || '' %>"

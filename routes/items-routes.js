@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const isSignedIn = require('../middleware/is-signed-in')
 const Item = require("../models/Item")
-
+const upload = require('../middleware/upload')
 router.get('/', (req, res) => {
     res.redirect('/items/all-items')
 });
@@ -10,7 +10,7 @@ router.get('/create',isSignedIn, (req, res) => {
     res.render('items/create-item.ejs')
 })
 
-router.post('/create', isSignedIn, async (req, res) => {
+router.post('/create', isSignedIn,upload.single('image'), async (req, res) => {
     try {
         const { title, description, category, location, date, type, image } = req.body
         const createdItem = await Item.create({
@@ -20,7 +20,7 @@ router.post('/create', isSignedIn, async (req, res) => {
             location,
             date,
             type,
-            image,
+            image: `/uploads/${req.file.filename}`,
             owner: req.session.user._id
         })
 

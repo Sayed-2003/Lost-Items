@@ -8,18 +8,6 @@ const methodOverride = require('method-override')
 const { MongoStore } = require("connect-mongo");
 const connectToDB = require('./db.js')
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    }
-});
-const upload = multer({ storage });
-app.post('/upload', upload.single('file'), (req, res) => {
-    res.send('File uploaded successfully');
-});
 
 
 // middleware imports
