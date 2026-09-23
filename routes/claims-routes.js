@@ -44,18 +44,28 @@ router.get('/requests',isSignedIn, async (req, res) => {
     }
 });
 
-router.put('/:id', async(req,res)=>{
-    const foundClaim = await Claim.findByIdAndUpdate(req.params.id,{
-        status: 'Approved'
-    })
-    res.redirect('/claims/requests')
+router.put('/:id/accept', isSignedIn, async (req, res) => {
+    try {
+        await Claim.findByIdAndUpdate(req.params.id, { status: 'Accepted' })
+
+        res.redirect('/claims/requests')
+
+    } catch (error) {
+        console.log(error)
+        res.redirect('/claims/requests')
+    }
 })
 
 
-router.put('/:id', async(req,res)=>{
-    const foundClaim = await Claim.findByIdAndUpdate(req.params.id,{
-        status: 'Rejected'
-    })
-    res.redirect('/claims/requests')
+router.put('/:id/reject', isSignedIn, async (req, res) => {
+    try {
+        await Claim.findByIdAndUpdate(req.params.id, { status: 'Rejected'})
+
+        res.redirect('/claims/requests')
+
+    } catch (error) {
+        console.log(error)
+        res.redirect('/claims/requests')
+    }
 })
 module.exports = router

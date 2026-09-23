@@ -25,17 +25,14 @@
 
         <p>Status: <%= oneClaim.status %></p>
 
-        <form action="/claims/<%= oneClaim._id %>?_method=PUT" method="post">
+        <form action="/claims/<%= oneClaim._id %>/accept?_method=PUT" method="post">
+    <button id="Approved">Approved</button>
+</form>
 
-            <button id="Approved">Approved</button>
+<form action="/claims/<%= oneClaim._id %>/reject?_method=PUT" method="post">
+    <button id="rejected">Rejected</button>
+</form>
 
-        </form>
-
-         <form action="" method="post">
-
-            <button id="rejected">Rejected</button>
-
-        </form>
 <% } %>     
 </body>
 </html>
