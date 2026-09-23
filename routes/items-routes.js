@@ -63,6 +63,10 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
         const { id } = req.params
         const foundItem = await Item.findById(id)
 
+        if (!foundItem.owner.equals(req.session.user._id)) {
+            return res.send('You are not the owner')
+        }
+
         res.render('items/edit-item.ejs', { item: foundItem })
 
     } catch (error) {
@@ -74,6 +78,11 @@ router.put('/:id', isSignedIn, async (req, res) => {
     try {
         const { title, description, category, location, date, type, image } = req.body
         const { id } = req.params
+
+        if (!foundItem.owner.equals(req.session.user._id)) {
+            return res.send('You are not the owner')
+        }
+
         const updatedItem = await Item.findByIdAndUpdate(id,
             {
                 title,
@@ -83,7 +92,7 @@ router.put('/:id', isSignedIn, async (req, res) => {
                 date,
                 type,
                 image
-             }, { new: true }
+            }, { new: true }
         )
 
         console.log(updatedItem);
@@ -101,9 +110,14 @@ router.delete('/:id', isSignedIn, async (req, res) => {
 
     const foundItem = await Item.findById(id)
 
+    if (!foundItem) {
+        return res.send('Item not found')
+    }
+
     if (!foundItem.owner.equals(req.session.user._id)) {
         return res.send('You are not the owner')
     }
+
     const deletedItem = await Item.findByIdAndUpdate(id, { isDeleted: true })
 
     console.log(deletedItem)
