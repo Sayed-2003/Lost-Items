@@ -53,6 +53,15 @@ router.post('/create/:itemId', isSignedIn, async (req, res) => {
             return res.send('You cannot claim your own item')
         }
 
+        const approvedClaim = await Claim.findOne({
+            item: foundItem._id,
+            status: 'Approved'
+        })
+
+        if (approvedClaim) {
+            return res.send('This item has already been claimed')
+        }
+
         const existingClaim = await Claim.findOne({
             item: foundItem._id,
             claimant: req.session.user._id
