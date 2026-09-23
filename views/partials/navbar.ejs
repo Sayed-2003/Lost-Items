@@ -1,13 +1,19 @@
 <nav>
-    
     <a href="/">Homepage</a>
-    <% if (user){ %>
+
+<% if (user) { %>
+
+    <a href="/items/all-items">All Items</a>
+    <a href="/items/create">Create Item</a>
+    <a href="/claims/my-claims">My Claims</a>
+    <a href="/claims/requests">Requests</a>
     <a href="/auth/sign-out">Logout</a>
 
-    <% } else{ %>
+<% } else { %>
+
     <a href="/auth/sign-up">Sign up</a>
     <a href="/auth/sign-in">Login</a>
 
-    <% } %>
-    
+<% } %>
+
 </nav>
