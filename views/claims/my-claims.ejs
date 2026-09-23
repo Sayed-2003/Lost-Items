@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My claims</title>
 </head>
 <body>
-    
+    <h1>My Claims</h1>
+
+<% for (const oneClaim of Claim) { %>
+
+    <div>
+        <h2>Title:<%= oneClaim.item.title %></h2>
+        <p>image: <%= oneClaim.item.image %></p>
+        <p>Status: <%= oneClaim.status %></p>
+
+
+        <a href="/items/<%= oneClaim.item._id %>">
+            View Item
+        </a>
+    </div>
+
+<% } %>
 </body>
 </html>
