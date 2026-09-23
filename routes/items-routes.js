@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.redirect('/items/all-items')
 });
 
-router.get('/create', (req, res) => {
+router.get('/create',isSignedIn, (req, res) => {
     res.render('items/create-item.ejs')
 })
 
@@ -51,6 +51,10 @@ router.get('/:id', async (req, res) => {
     try {
         const foundItem = await Item.findOne({ _id: req.params.id, isDeleted: false }).populate('owner')
 
+         if (!foundItem) {
+            return res.send('Item not found')
+        }
+        
         res.render('items/item-details.ejs', { item: foundItem })
 
     } catch (error) {

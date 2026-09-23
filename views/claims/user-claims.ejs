@@ -17,7 +17,9 @@
 
        <p>Description: <%= oneClaim.item.description %></p>
 
-       <p>Image: <%= oneClaim.item.image %></p>
+       <% if (oneClaim.item.image) { %>
+    <img src="<%= oneClaim.item.image %>" alt="<%= oneClaim.item.title %>" width="300">
+<% } %>
 
         <p>Username: <%= oneClaim.claimant.username %></p>
 
