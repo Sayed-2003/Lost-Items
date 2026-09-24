@@ -4,75 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>
         <%= item.title %>
     </title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+
     <%- include('../partials/navbar') %>
 
-<!-- item details -->
-    <h1>
-        <%= item.title %>
-    </h1>
+    <div class="item-details">
 
-    <% if (item.image) { %>
-        <img src="<%= item.image %>" alt="<%= item.title %>" width="300">
+        <h1>
+            <%= item.title %>
+        </h1>
+
+        <img
+            src="<%= item.image %>"
+            alt="<%= item.title %>"
+        >
+
+        <p>
+            <strong>Description:</strong>
+            <%= item.description %>
+        </p>
+
+        <p>
+            <strong>Category:</strong>
+            <%= item.category %>
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            <%= item.location %>
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            <%= item.date.toDateString() %>
+        </p>
+
+        <p>
+            <strong>Type:</strong>
+            <%= item.type %>
+        </p>
+
+        <% if (item.owner) { %>
+
+            <p>
+                <strong>Posted by:</strong>
+                <%= item.owner.username %>
+            </p>
+
         <% } %>
 
-            <p>
-                <strong>Description:</strong>
-                <%= item.description %>
-            </p>
+        <% if (item.owner._id.equals(user._id)) { %>
 
-            <p>
-                <strong>Category:</strong>
-                <%= item.category %>
-            </p>
+            <a
+                class="action-link"
+                href="/items/<%= item._id %>/edit"
+            >
+                Edit Item
+            </a>
 
-            <p>
-                <strong>Location:</strong>
-                <%= item.location %>
-            </p>
+        <% } %>
 
-            <p>
-                <strong>Date:</strong>
-                <%= item.date.toDateString() %>
-            </p>
+        <a
+            class="action-link"
+            href="/items/all-items"
+        >
+            Back to all items
+        </a>
 
-            <p>
-                <strong>Type:</strong>
-                <%= item.type %>
-            </p>
+        <br><br>
 
-            <% if (item.owner) { %>
-                <p>
-                    <strong>Posted by:</strong>
-                    <%= item.owner.username %>
-                </p>
-                <% } %>
+        <% if (user && !item.owner._id.equals(user._id)) { %>
 
-                    <% if (item.owner._id.equals(user._id)) { %>
-                        <a href="/items/<%= item._id %>/edit">Edit Item</a>
-                        <% } %>
+            <form
+                action="/claims/create/<%= item._id %>"
+                method="POST"
+            >
 
-                            <a href="/items/all-items">Back to all items</a>
+                <label for="message">
+                    Why do you think this item belongs to you?
+                </label>
 
-                            <br><br>
+                <input
+                    id="message"
+                    type="text"
+                    name="message"
+                    maxlength="500"
+                    required
+                >
 
-                <% if (user && !item.owner._id.equals(user._id)) { %>
-<!-- claim form -->
-    <form action="/claims/create/<%= item._id %>" method="POST">
+                <button type="submit">
+                    Claim Item
+                </button>
 
-        <label for="message"> Why do you think this item belongs to you? </label>
+            </form>
 
-        <input id="message" type="text" name="message" maxlength="500" required >
+        <% } %>
 
-        <button type="submit">Claim Item</button>
-    </form>
-
-<% } %>
+    </div>
 
 </body>
 

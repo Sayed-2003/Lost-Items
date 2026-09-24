@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Create Item</title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+
     <%- include('../partials/navbar') %>
 
-    <h1>Report Lost or Found Item</h1>
+    <div class="container">
 
-    <form action="/items/create" method="POST" enctype="multipart/form-data">
+        <h1>Report Lost or Found Item</h1>
 
-        <label for="title">Item Name:</label>
-        <input type="text" id="title" name="title" required>
+        <form action="/items/create" method="POST" enctype="multipart/form-data">
 
-        <br><br>
+            <label for="title">Item Name:</label>
+            <input type="text" id="title" name="title" required>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
 
-        <br><br>
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
 
-        <label for="category">Category:</label>
-        <select id="category" name="category" required>
-            <option value="">Select a category</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Documents">Documents</option>
-            <option value="Accessories">Accessories</option>
-            <option value="Other">Other</option>
-        </select>
+                <option value="">Select a category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Documents">Documents</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Other">Other</option>
 
-        <br><br>
+            </select>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
 
-        <br><br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
 
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
+            <label for="type">Item Type:</label>
+            <select id="type" name="type" required>
 
-        <br><br>
+                <option value="">Select type</option>
+                <option value="Lost">Lost</option>
+                <option value="Found">Found</option>
 
-        <label for="type">Item Type:</label>
-        <select id="type" name="type" required>
-            <option value="">Select type</option>
-            <option value="Lost">Lost</option>
-            <option value="Found">Found</option>
-        </select>
+            </select>
 
-        <br><br>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
 
-        <label for="image">Image URL:</label>
-        <input type="file" id="image" name="image">
+            <button type="submit">Submit Item</button>
 
-        <br><br>
+        </form>
 
-        <button type="submit">Submit Item</button>
-
-    </form>
+    </div>
 
 </body>
+
 </html>

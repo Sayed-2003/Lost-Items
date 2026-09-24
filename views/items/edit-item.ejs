@@ -1,94 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Edit Item</title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+
     <%- include('../partials/navbar') %>
 
-    <h1>Edit Item</h1>
+    <div class="container">
 
-    <form action="/items/<%= item._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <h1>Edit Item</h1>
 
-        <label for="title">Item Name:</label>
-        <input
-            type="text"
-            id="title"
-            name="title"
-            value="<%= item.title %>"
-            required
-        >
+        <form action="/items/<%= item._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
-        <br><br>
+            <label for="title">Item Name:</label>
 
-        <label for="description">Description:</label>
-        <textarea
-            id="description"
-            name="description"
-            required
-        ><%= item.description %></textarea>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="<%= item.title %>"
+                required
+            >
 
-        <br><br>
+            <label for="description">Description:</label>
 
-        <label for="category">Category:</label>
-        <select id="category" name="category" required>
-            <option value="Electronics" <%= item.category === 'Electronics' ? 'selected' : '' %>>Electronics</option>
-            <option value="Clothing" <%= item.category === 'Clothing' ? 'selected' : '' %>>Clothing</option>
-            <option value="Documents" <%= item.category === 'Documents' ? 'selected' : '' %>>Documents</option>
-            <option value="Accessories" <%= item.category === 'Accessories' ? 'selected' : '' %>>Accessories</option>
-            <option value="Other" <%= item.category === 'Other' ? 'selected' : '' %>>Other</option>
-        </select>
+            <textarea
+                id="description"
+                name="description"
+                required
+            ><%= item.description %></textarea>
 
-        <br><br>
+            <label for="category">Category:</label>
 
-        <label for="location">Location:</label>
-        <input
-            type="text"
-            id="location"
-            name="location"
-            value="<%= item.location %>"
-            required
-        >
+            <select id="category" name="category" required>
 
-        <br><br>
+                <option value="Electronics" <%= item.category === 'Electronics' ? 'selected' : '' %>>
+                    Electronics
+                </option>
 
-        <label for="date">Date:</label>
-        <input
-            type="date"
-            id="date"
-            name="date"
-            value="<%= item.date.toISOString().split('T')[0] %>"
-            required
-        >
+                <option value="Clothing" <%= item.category === 'Clothing' ? 'selected' : '' %>>
+                    Clothing
+                </option>
 
-        <br><br>
+                <option value="Documents" <%= item.category === 'Documents' ? 'selected' : '' %>>
+                    Documents
+                </option>
 
-        <label for="type">Item Type:</label>
-        <select id="type" name="type" required>
-            <option value="Lost" <%= item.type === 'Lost' ? 'selected' : '' %>>Lost</option>
-            <option value="Found" <%= item.type === 'Found' ? 'selected' : '' %>>Found</option>
-        </select>
+                <option value="Accessories" <%= item.category === 'Accessories' ? 'selected' : '' %>>
+                    Accessories
+                </option>
 
-        <br><br>
+                <option value="Other" <%= item.category === 'Other' ? 'selected' : '' %>>
+                    Other
+                </option>
 
-        <p>Original Image</p>
-        <img src="<%= item.image %>" alt="">
-        <label for="image">Image URL:</label>
-        <input
-            type="file"
-            id="image"
-            name="image"
-            value="<%= item.image || '' %>"
-        >
+            </select>
 
-        <br><br>
+            <label for="location">Location:</label>
 
-        <button type="submit">Update Item</button>
+            <input
+                type="text"
+                id="location"
+                name="location"
+                value="<%= item.location %>"
+                required
+            >
 
-    </form>
+            <label for="date">Date:</label>
+
+            <input
+                type="date"
+                id="date"
+                name="date"
+                value="<%= item.date.toISOString().split('T')[0] %>"
+                required
+            >
+
+            <label for="type">Item Type:</label>
+
+            <select id="type" name="type" required>
+
+                <option value="Lost" <%= item.type === 'Lost' ? 'selected' : '' %>>
+                    Lost
+                </option>
+
+                <option value="Found" <%= item.type === 'Found' ? 'selected' : '' %>>
+                    Found
+                </option>
+
+            </select>
+
+            <p>Original Image</p>
+
+            <img
+                src="<%= item.image %>"
+                alt="<%= item.title %>"
+                class="item-card"
+            >
+
+            <label for="image">Replace Image:</label>
+
+            <input
+                type="file"
+                id="image"
+                name="image"
+            >
+
+            <button type="submit">
+                Update Item
+            </button>
+
+        </form>
+
+    </div>
 
 </body>
+
 </html>

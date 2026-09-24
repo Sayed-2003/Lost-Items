@@ -1,34 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My claims</title>
+
+    <title>My Claims</title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
+
     <%- include('../partials/navbar') %>
 
-    <h1>My Claims</h1>
-<% if (Claim.length === 0) { %>
+    <div class="container">
 
-    <h1>You have not submitted any claims.</h1>
+        <h1>My Claims</h1>
 
-<% } else { %>
-<% for (const oneClaim of Claim) { %>
+        <% if (Claim.length === 0) { %>
 
-    <div>
-        <h2>Title:<%= oneClaim.item.title %></h2>
-        <p>image: <img src="<%= oneClaim.item.image %>" alt=""></p>
-        <p>Message: <%= oneClaim.message %></p>
-        <p>Status: <%= oneClaim.status %></p>
+            <div class="claim-card">
 
+                <h2>You have not submitted any claims.</h2>
 
-        <a href="/items/<%= oneClaim.item._id %>">
-            View Item
-        </a>
+            </div>
+
+        <% } else { %>
+
+            <% for (const oneClaim of Claim) { %>
+
+                <div class="claim-card">
+
+                    <h2>
+                        <%= oneClaim.item.title %>
+                    </h2>
+
+                    <% if (oneClaim.item.image) { %>
+
+                        <img
+                            src="<%= oneClaim.item.image %>"
+                            alt="<%= oneClaim.item.title %>"
+                        >
+
+                    <% } %>
+
+                    <p>
+                        <strong>Message:</strong>
+                        <%= oneClaim.message %>
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="status">
+                            <%= oneClaim.status %>
+                        </span>
+                    </p>
+
+                    <a
+                        class="action-link"
+                        href="/items/<%= oneClaim.item._id %>"
+                    >
+                        View Item
+                    </a>
+
+                </div>
+
+            <% } %>
+
+        <% } %>
+
     </div>
 
-<% } %>
-<% } %>
 </body>
+
 </html>

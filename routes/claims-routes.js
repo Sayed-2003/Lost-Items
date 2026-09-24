@@ -28,9 +28,7 @@ router.get('/create/:itemId', isSignedIn, async (req, res) => {
             return res.send('You have already claimed this item')
         }
 
-        res.render('claims/create-claim.ejs', {
-            item: foundItem
-        })
+        res.render('claims/create-claim.ejs', {item: foundItem })
 
     } catch (error) {
         console.log(error)
@@ -95,7 +93,7 @@ router.get('/requests', isSignedIn, async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-});
+})
 
 router.put('/:id/accept', isSignedIn, async (req, res) => {
     try {

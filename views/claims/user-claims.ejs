@@ -1,48 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>User Claims</title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
+
     <%- include('../partials/navbar') %>
 
-    <h1>User Requests</h1>
+    <div class="container">
 
-    <% if (Claim.length === 0) { %>
+        <h1>User Requests</h1>
 
-    <h1>You have no pending requests.</h1>
+        <% if (Claim.length === 0) { %>
 
-<% } else { %>
-    
-    <% for(const oneClaim of Claim){ %>
+            <div class="claim-card">
 
-    
+                <h2>You have no pending requests.</h2>
 
-       <p>Title: <%= oneClaim.item.title %></p> 
+            </div>
 
-       <p>Description: <%= oneClaim.item.description %></p>
+        <% } else { %>
 
-       <% if (oneClaim.item.image) { %>
-    <img src="<%= oneClaim.item.image %>" alt="<%= oneClaim.item.title %>" width="300">
-<% } %>
+            <% for (const oneClaim of Claim) { %>
 
-        <p>Username: <%= oneClaim.claimant.username %></p>
+                <div class="claim-card">
 
-        <p>Message: <%= oneClaim.message %></p>
+                    <h2>
+                        <%= oneClaim.item.title %>
+                    </h2>
 
-        <p>Status: <%= oneClaim.status %></p>
+                    <p>
+                        <strong>Description:</strong>
+                        <%= oneClaim.item.description %>
+                    </p>
 
-        <form action="/claims/<%= oneClaim._id %>/accept?_method=PUT" method="post">
-    <button id="Approved">Approved</button>
-</form>
+                    <% if (oneClaim.item.image) { %>
 
-<form action="/claims/<%= oneClaim._id %>/reject?_method=PUT" method="post">
-    <button id="rejected">Rejected</button>
-</form>
+                        <img
+                            src="<%= oneClaim.item.image %>"
+                            alt="<%= oneClaim.item.title %>"
+                        >
 
-<% } %>   
-<% } %>  
+                    <% } %>
+
+                    <p>
+                        <strong>Username:</strong>
+                        <%= oneClaim.claimant.username %>
+                    </p>
+
+                    <p>
+                        <strong>Message:</strong>
+                        <%= oneClaim.message %>
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="status">
+                            <%= oneClaim.status %>
+                        </span>
+                    </p>
+
+                    <form
+                        action="/claims/<%= oneClaim._id %>/accept?_method=PUT"
+                        method="post"
+                    >
+
+                        <button
+                            class="approve-button"
+                            type="submit"
+                        >
+                            Approve
+                        </button>
+
+                    </form>
+
+                    <form
+                        action="/claims/<%= oneClaim._id %>/reject?_method=PUT"
+                        method="post"
+                    >
+
+                        <button
+                            class="reject-button"
+                            type="submit"
+                        >
+                            Reject
+                        </button>
+
+                    </form>
+
+                </div>
+
+            <% } %>
+
+        <% } %>
+
+    </div>
+
 </body>
+
 </html>

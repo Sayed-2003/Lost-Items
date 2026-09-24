@@ -1,19 +1,49 @@
-<nav>
-    <a href="/">Homepage</a>
+<nav class="navbar">
 
-<% if (user) { %>
+    <div class="container-fluid">
 
-    <a href="/items/all-items">All Items</a>
-    <a href="/items/create">Create Item</a>
-    <a href="/claims/my-claims">My Claims</a>
-    <a href="/claims/requests">Requests</a>
-    <a href="/auth/sign-out">Logout</a>
+        <a class="navbar-brand" href="/">
+            Campus Lost & Found
+        </a>
 
-<% } else { %>
+        <div class="navbar-nav">
 
-    <a href="/auth/sign-up">Sign up</a>
-    <a href="/auth/sign-in">Login</a>
+            <% if (user) { %>
 
-<% } %>
+                <a class="nav-link" href="/items/all-items">
+                    All Items
+                </a>
+
+                <a class="nav-link" href="/items/create">
+                    Create Item
+                </a>
+
+                <a class="nav-link" href="/claims/my-claims">
+                    My Claims
+                </a>
+
+                <a class="nav-link" href="/claims/requests">
+                    Requests
+                </a>
+
+                <a class="nav-link" href="/auth/sign-out">
+                    Logout
+                </a>
+
+            <% } else { %>
+
+                <a class="nav-link" href="/auth/sign-up">
+                    Sign up
+                </a>
+
+                <a class="nav-link" href="/auth/sign-in">
+                    Login
+                </a>
+
+            <% } %>
+
+        </div>
+
+    </div>
 
 </nav>
