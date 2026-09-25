@@ -21,6 +21,72 @@ Campus Lost & Found is a web application designed to help students report, find,
 
 ## Getting Started
 
+Follow these steps to run the project locally.
+
+### 1. Clone the Repository
+
+Clone the repository from GitHub:
+
+```bash
+git clone https://github.com/Sayed-2003/Lost-Items.git
+```
+
+Then move into the project folder:
+
+```bash
+cd Project2-Lost-Items
+```
+
+### 2. Install Dependencies
+
+Install all required packages:
+
+```bash
+npm i
+```
+
+### 3. Set Up Environment Variables
+
+Create a `.env` file in the root directory of the project.
+Add your environment variables:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+SESSION_SECRET=your_session_secret
+PORT=3000
+```
+
+Replace the values with your own MongoDB connection string and session secret.
+
+**Important:** Never upload your `.env` file to GitHub. so make sure u add it in .gitignore
+
+### 4. Start the Application
+
+Start the server with:
+
+```bash
+nodemon server.js
+```
+
+### 5. Open the Application
+
+Once the server is running, open your browser and go to:
+
+```text
+http://localhost:3000
+```
+
+The Campus Lost & Found application should now be running.
+
+## Requirements
+
+Before running the project, make sure you have:
+
+- [Node.js](https://nodejs.org/) installed
+- npm installed
+- MongoDB database
+- Git installed
+
 
 ## User Stories
 1. As a user, I want to create an account and sign in so that I can use the application.
@@ -47,6 +113,18 @@ Campus Lost & Found is a web application designed to help students report, find,
 ## Routes
 
 ## Features
+
+- User registration and sign-in
+- Session-based authentication
+- Create lost and found item listings
+- Upload images for items
+- View item details
+- Edit and delete your own items
+- Submit claims for items
+- View your submitted claims
+- View claims for your own items
+- Approve or reject claims
+- Sign out
 
 
 ## Future Enhancements
