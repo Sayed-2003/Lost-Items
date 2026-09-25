@@ -2,6 +2,7 @@ const router = require('express').Router()
 const isSignedIn = require('../middleware/is-signed-in')
 const Item = require("../models/Item")
 const upload = require('../middleware/upload')
+
 router.get('/', (req, res) => {
     res.redirect('/items/all-items')
 });
@@ -78,14 +79,10 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
     }
 });
 
-router.put('/:id', isSignedIn, async (req, res) => {
+router.put('/:id', isSignedIn, upload.single('image'), async (req, res) => {
     try {
         const { title, description, category, location, date, type, image } = req.body
         const { id } = req.params
-
-        if (!foundItem.owner.equals(req.session.user._id)) {
-            return res.send('You are not the owner')
-        }
 
         const updatedItem = await Item.findByIdAndUpdate(id,
             {
