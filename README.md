@@ -112,6 +112,46 @@ Before running the project, make sure you have:
 
 ## Routes
 
+### Index
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/` | Render homepage |
+
+### Auth
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/auth/sign-up` | Render sign-up form |
+| POST | `/auth/sign-up` | Create a new user |
+| GET | `/auth/sign-in` | Render sign-in form |
+| POST | `/auth/sign-in` | Authenticate user and start session |
+| GET | `/auth/sign-out` | Destroy session and sign out |
+
+### Items
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/items` | Redirect to all items |
+| GET | `/items/create` | Render create-item form *(auth required)* |
+| POST | `/items/create` | Create a new item *(auth required)* |
+| GET | `/items/all-items` | Display all non-deleted items |
+| GET | `/items/:id` | Display a single item's details |
+| GET | `/items/:id/edit` | Render edit form for an item *(auth + owner required)* |
+| PUT | `/items/:id` | Update an item *(auth + owner required)* |
+| DELETE | `/items/:id` | Soft-delete an item *(auth + owner required)* |
+
+### Claims
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/claims/create/:itemId` | Render claim form for an item *(auth required)* |
+| POST | `/claims/create/:itemId` | Submit a claim on an item *(auth required)* |
+| GET | `/claims/requests` | View pending claims on items you own *(auth required)* |
+| PUT | `/claims/:id/accept` | Approve a claim *(auth required)* |
+| PUT | `/claims/:id/reject` | Reject a claim *(auth required)* |
+| GET | `/claims/my-claims` | View claims you've submitted *(auth required)* |
+
 ## Features
 
 - User registration and sign-in
