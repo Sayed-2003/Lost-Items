@@ -31,4 +31,19 @@ router.get('/dashboard', isSignedIn, isAdmin, async (req, res) => {
 
 });
 
+router.get('/users', isSignedIn, isAdmin, async (req, res) => {
+    try {
+
+        const users = await User.find()
+
+        res.render('admin/users.ejs', {users})
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).send('Something went wrong')
+
+    }
+})
+
 module.exports = router;
