@@ -46,4 +46,42 @@ router.get('/users', isSignedIn, isAdmin, async (req, res) => {
     }
 })
 
+router.get('/items', isSignedIn, isAdmin, async (req, res) => {
+    try {
+
+        const items = await Item.find({
+            isDeleted: false
+        }).populate('owner')
+
+        res.render('admin/items.ejs', {
+            items
+        })
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).send('Something went wrong')
+
+    }
+})
+
+router.get('/claims', isSignedIn, isAdmin, async (req, res) => {
+    try {
+
+        const claims = await Claim.find()
+            .populate('item')
+            .populate('claimant')
+
+        res.render('admin/claims.ejs', {
+            claims
+        })
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).send('Something went wrong')
+
+    }
+})
+
 module.exports = router;
