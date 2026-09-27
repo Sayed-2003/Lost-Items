@@ -18,7 +18,7 @@ router.get('/dashboard', isSignedIn, isAdmin, async (req, res) => {
 
         const totalItems = await Item.countDocuments({
             isDeleted: false
-        });
+        })
 
         const totalClaims = await Claim.countDocuments();
 
