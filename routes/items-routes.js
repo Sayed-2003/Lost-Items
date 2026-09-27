@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const isSignedIn = require('../middleware/is-signed-in')
 const Item = require("../models/Item")
-const upload = require('../middleware/upload')
+const upload = require('../middleware/upload');
+const Claim = require('../models/Claim');
 
 router.get('/', (req, res) => {
     res.redirect('/items/all-items')
@@ -39,7 +40,7 @@ router.get('/all-items', async (req, res) => {
     try {
         const foundItems = await Item.find({ isDeleted: false }).populate('owner')
 
-        res.render('items/all-items.ejs', { items: foundItems })
+        res.render('items/all-items.ejs', { items: foundItems})
 
     } catch (error) {
         console.log(error)
@@ -55,8 +56,10 @@ router.get('/:id', async (req, res) => {
          if (!foundItem) {
             return res.send('Item not found')
         }
+
+        const isClaimed = await Claim.findOne({item:foundItem._id, status:'Approved' })
         
-        res.render('items/item-details.ejs', { item: foundItem })
+        res.render('items/item-details.ejs', { item: foundItem, isClaimed })
 
     } catch (error) {
         console.log(error)
