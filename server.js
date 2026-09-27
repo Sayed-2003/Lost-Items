@@ -20,6 +20,7 @@ const authController = require("./routes/auth.routes.js")
 const indexController = require("./routes/index.routes.js")
 const itemsRouter = require('./routes/items-routes.js')
 const claimsRouter = require('./routes/claims-routes.js')
+const adminRoutes = require('./routes/admin.routes')
 
 
 // Middleware
@@ -51,15 +52,12 @@ app.use(passUserToView)
 
 
 
-
-
-
 // Routes go here
 app.use('/auth', authController)
 app.use('/', indexController)
 app.use('/items', itemsRouter)
 app.use('/claims', claimsRouter)
-
+app.use('/admin', adminRoutes)
 
 
 
