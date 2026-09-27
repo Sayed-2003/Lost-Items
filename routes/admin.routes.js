@@ -17,9 +17,17 @@ router.get('/dashboard', isSignedIn, isAdmin, async (req, res) => {
 
         const totalClaims = await Claim.countDocuments();
 
-        const pendingClaims = await Claim.countDocuments({ status: 'Pending' });
+        const pendingClaims = await Claim.countDocuments({
+            status: 'Pending'
+        })
 
-        res.render('admin/dashboard.ejs', {totalUsers,totalItems,totalClaims,pendingClaims});
+        const pendingClaimsList = await Claim.find({
+            status: 'Pending'
+        })
+            .populate('item')
+            .populate('claimant')
+
+        res.render('admin/dashboard.ejs', { totalUsers, totalItems, totalClaims, pendingClaims, pendingClaimsList });
 
     } catch (error) {
 
@@ -36,7 +44,7 @@ router.get('/users', isSignedIn, isAdmin, async (req, res) => {
 
         const users = await User.find()
 
-        res.render('admin/users.ejs', {users})
+        res.render('admin/users.ejs', { users })
 
     } catch (error) {
 

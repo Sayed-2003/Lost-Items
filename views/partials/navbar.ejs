@@ -26,6 +26,14 @@
                     Requests
                 </a>
 
+                <% if (user.role === 'admin') { %>
+
+                    <a class="nav-link" href="/admin/dashboard">
+                        Admin Dashboard
+                    </a>
+
+                <% } %>
+
                 <a class="nav-link" href="/auth/sign-out">
                     Logout
                 </a>

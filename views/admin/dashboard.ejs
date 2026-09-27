@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Dashboard</title>
+    <title>Admin Dashboard</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"  rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -18,138 +17,210 @@
 
     <%- include('../partials/admin-navbar') %>
 
-<div class="container mt-5">
+        <div class="container mt-5">
 
-    <div class="mb-5">
+            <div class="mb-5">
 
-        <h1>Admin Dashboard</h1>
+                <h1>Admin Dashboard</h1>
 
-        <p class="text-muted">
-            Welcome, Admin!
-        </p>
+                <p class="text-muted">
+                    Welcome, Admin!
+                </p>
 
-    </div>
+            </div>
+
+            <h2 class="mb-4">
+                Statistics
+            </h2>
+
+            <div class="row g-4">
+
+                <!-- Total Users -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body text-center">
+
+                            <h5 class="card-title">
+                                Total Users
+                            </h5>
+
+                            <p class="display-5 fw-bold mb-0">
+                                <%= totalUsers %>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
 
-    <h2 class="mb-4">Statistics</h2>
+                <!-- Total Items -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body text-center">
+
+                            <h5 class="card-title">
+                                Total Items
+                            </h5>
+
+                            <p class="display-5 fw-bold mb-0">
+                                <%= totalItems %>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
 
-    <div class="row g-4">
+                <!-- Total Claims -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body text-center">
+
+                            <h5 class="card-title">
+                                Total Claims
+                            </h5>
+
+                            <p class="display-5 fw-bold mb-0">
+                                <%= totalClaims %>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
 
-        <!-- Total Users -->
+                <!-- Pending Claims -->
 
-        <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3">
 
-            <div class="card shadow-sm h-100">
+                    <div class="card shadow-sm h-100">
 
-                <div class="card-body text-center">
+                        <div class="card-body text-center">
 
-                    <h5 class="card-title">
-                        Total Users
-                    </h5>
+                            <h5 class="card-title">
+                                Pending Claims
+                            </h5>
 
-                    <p class="display-5 fw-bold mb-0">
-                        <%= totalUsers %>
-                    </p>
+                            <p class="display-5 fw-bold mb-0">
+                                <%= pendingClaims %>
+                            </p>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
+
+            <!-- Admin Management Buttons -->
+
+            <a href="/admin/users" class="btn btn-dark mt-4">
+                Manage Users
+            </a>
+
+            <a href="/admin/items" class="btn btn-dark mt-4">
+                Manage Items
+            </a>
+
+            <a href="/admin/claims" class="btn btn-dark mt-4">
+                Manage Claims
+            </a>
+
+
+            <!-- Pending Claims -->
+
+            <h2 class="mt-5 mb-4">
+                Pending Claims
+            </h2>
+
+            <a href="/admin/claims" class="btn btn-dark mb-4">
+                View All Claims
+            </a>
+
+            <% if (pendingClaimsList.length===0) { %>
+
+                <p class="text-muted">
+                    There are no pending claims.
+                </p>
+
+                <% } else { %>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Item
+                                    </th>
+
+                                    <th>
+                                        Claimant
+                                    </th>
+
+                                    <th>
+                                        Message
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <% for (const claim of pendingClaimsList) { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <%= claim.item.title %>
+                                        </td>
+
+                                        <td>
+                                            <%= claim.claimant.username %>
+                                        </td>
+
+                                        <td>
+                                            <%= claim.message %>
+                                        </td>
+
+                                    </tr>
+
+                                    <% } %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <% } %>
+
         </div>
 
 
-        <!-- Total Items -->
-
-        <div class="col-md-6 col-lg-3">
-
-            <div class="card shadow-sm h-100">
-
-                <div class="card-body text-center">
-
-                    <h5 class="card-title">
-                        Total Items
-                    </h5>
-
-                    <p class="display-5 fw-bold mb-0">
-                        <%= totalItems %>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- Total Claims -->
-
-        <div class="col-md-6 col-lg-3">
-
-            <div class="card shadow-sm h-100">
-
-                <div class="card-body text-center">
-
-                    <h5 class="card-title">
-                        Total Claims
-                    </h5>
-
-                    <p class="display-5 fw-bold mb-0">
-                        <%= totalClaims %>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- Pending Claims -->
-
-        <div class="col-md-6 col-lg-3">
-
-            <div class="card shadow-sm h-100">
-
-                <div class="card-body text-center">
-
-                    <h5 class="card-title">
-                        Pending Claims
-                    </h5>
-
-                    <p class="display-5 fw-bold mb-0">
-                        <%= pendingClaims %>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-    <a href="/admin/users" class="btn btn-dark mt-4">
-    Manage Users
-</a>
-
-<a href="/admin/items" class="btn btn-dark mt-4">
-    Manage Items
-</a>
-
-<a href="/admin/claims" class="btn btn-dark mt-4">
-    Manage Claims
-</a>
-
-</div>
-
-
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+        </script>
 
 </body>
 
