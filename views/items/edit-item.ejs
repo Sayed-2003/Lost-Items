@@ -12,6 +12,17 @@
     rel="stylesheet"
 >
 
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
 <link rel="stylesheet" href="/css/style.css">
 
 <link
@@ -27,11 +38,19 @@
 
     <div class="container">
 
-        <h1>Edit Item</h1>
+        <div class="form-header">
+            <span class="icon-circle icon-circle-lg">
+                <i class="bi bi-pencil-square"></i>
+            </span>
+            <h1>Edit Item</h1>
+        </div>
 
         <form action="/items/<%= item._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
-            <label for="title">Item Name:</label>
+            <label for="title">
+                <i class="bi bi-tag"></i>
+                Item Name:
+            </label>
 
             <input
                 type="text"
@@ -41,7 +60,10 @@
                 required
             >
 
-            <label for="description">Description:</label>
+            <label for="description">
+                <i class="bi bi-card-text"></i>
+                Description:
+            </label>
 
             <textarea
                 id="description"
@@ -49,7 +71,10 @@
                 required
             ><%= item.description %></textarea>
 
-            <label for="category">Category:</label>
+            <label for="category">
+                <i class="bi bi-grid"></i>
+                Category:
+            </label>
 
             <select id="category" name="category" required>
 
@@ -75,7 +100,10 @@
 
             </select>
 
-            <label for="location">Location:</label>
+            <label for="location">
+                <i class="bi bi-geo-alt"></i>
+                Location:
+            </label>
 
             <input
                 type="text"
@@ -85,7 +113,10 @@
                 required
             >
 
-            <label for="date">Date:</label>
+            <label for="date">
+                <i class="bi bi-calendar3"></i>
+                Date:
+            </label>
 
             <input
                 type="date"
@@ -95,7 +126,10 @@
                 required
             >
 
-            <label for="type">Item Type:</label>
+            <label for="type">
+                <i class="bi bi-arrow-left-right"></i>
+                Item Type:
+            </label>
 
             <select id="type" name="type" required>
 
@@ -109,15 +143,20 @@
 
             </select>
 
-            <p>Original Image</p>
+            <p class="original-image-label">
+                <i class="bi bi-image"></i>
+                Original Image
+            </p>
 
             <img
                 src="<%= item.image %>"
                 alt="<%= item.title %>"
-                class="item-card"
             >
 
-            <label for="image">Replace Image:</label>
+            <label for="image">
+                <i class="bi bi-arrow-repeat"></i>
+                Replace Image:
+            </label>
 
             <input
                 type="file"
@@ -126,6 +165,7 @@
             >
 
             <button type="submit">
+                <i class="bi bi-check2-circle"></i>
                 Update Item
             </button>
 

@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const isSignedIn = require('../middleware/is-signed-in')
 const Item = require("../models/Item")
-const upload = require('../middleware/upload');
-const Claim = require('../models/Claim');
+const upload = require('../middleware/upload')
+const Claim = require('../models/Claim')
+const generateItemPDF = require('../utils/generateItemPDF')
 
 router.get('/', (req, res) => {
     res.redirect('/items/all-items')
@@ -47,6 +48,34 @@ router.get('/all-items', async (req, res) => {
     }
 });
 
+// generate a PDF for a single item
+router.get('/:id/pdf', async (req, res) => {
+    try {
+        const foundItem = await Item.findOne({
+            _id: req.params.id,
+            isDeleted: false
+        }).populate('owner')
+
+        if (!foundItem) {
+            return res.send('Item not found')
+        }
+
+        const doc = generateItemPDF(foundItem)
+
+        res.setHeader('Content-Type', 'application/pdf')
+        res.setHeader(
+            'Content-Disposition',
+            `attachment; filename="item-${foundItem._id}.pdf"`
+        )
+
+        doc.pipe(res)
+        doc.end()
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Something went wrong generating the PDF')
+    }
+})
 
 // display each user item 
 router.get('/:id', async (req, res) => {

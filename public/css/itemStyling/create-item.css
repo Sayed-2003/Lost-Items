@@ -24,7 +24,7 @@ body:has(form[action="/items/create"]) > .container {
     background: white;
 
     border: 1px solid var(--lf-border);
-    border-radius: 22px;
+    border-radius: var(--radius-lg);
 
     box-shadow:
         0 15px 40px rgba(15, 23, 42, 0.08);
@@ -33,12 +33,18 @@ body:has(form[action="/items/create"]) > .container {
 
 /* ---------- Heading ---------- */
 
-body:has(form[action="/items/create"]) > .container h1 {
+.form-header {
     text-align: center;
-
-    font-size: 2.3rem;
-
     margin-bottom: 35px;
+}
+
+.form-header .icon-circle {
+    margin-bottom: 16px;
+}
+
+.form-header h1 {
+    font-size: 2.1rem;
+    margin-bottom: 8px;
 }
 
 
@@ -86,6 +92,11 @@ body:has(form[action="/items/create"]) > .container input[type="file"] {
 /* ---------- Submit ---------- */
 
 body:has(form[action="/items/create"]) > .container button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
     border: none;
 
     background: var(--lf-blue);
@@ -93,7 +104,7 @@ body:has(form[action="/items/create"]) > .container button {
 
     padding: 13px 20px;
 
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
 
     font-size: 1rem;
     font-weight: 700;

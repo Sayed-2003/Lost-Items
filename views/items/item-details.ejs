@@ -14,6 +14,17 @@
     rel="stylesheet"
 >
 
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
 <link rel="stylesheet" href="/css/style.css">
 
 <link
@@ -25,13 +36,28 @@
 
 <body>
 
+    <% const categoryIcons = {
+        Electronics: 'bi-laptop',
+        Clothing: 'bi-bag',
+        Documents: 'bi-file-earmark-text',
+        Accessories: 'bi-watch',
+        Other: 'bi-box-seam'
+    }; %>
+
     <%- include('../partials/navbar') %>
 
     <div class="item-details">
 
-        <h1>
-            <%= item.title %>
-        </h1>
+        <div class="item-details-top">
+
+            <span class="pill-badge <%= item.type === 'Lost' ? 'badge-lost' : 'badge-found' %>">
+                <i class="bi <%= item.type === 'Lost' ? 'bi-search' : 'bi-box-seam' %>"></i>
+                <%= item.type %>
+            </span>
+
+            <h1><%= item.title %></h1>
+
+        </div>
 
         <img
             src="<%= item.image %>"
@@ -39,88 +65,105 @@
         >
 
         <p>
-            <strong>Description:</strong>
-            <%= item.description %>
+            <i class="bi bi-card-text"></i>
+            <span><strong>Description:</strong> <%= item.description %></span>
         </p>
 
         <p>
-            <strong>Category:</strong>
-            <%= item.category %>
+            <i class="bi <%= categoryIcons[item.category] || 'bi-box-seam' %>"></i>
+            <span><strong>Category:</strong> <%= item.category %></span>
         </p>
 
         <p>
-            <strong>Location:</strong>
-            <%= item.location %>
+            <i class="bi bi-geo-alt"></i>
+            <span><strong>Location:</strong> <%= item.location %></span>
         </p>
 
         <p>
-            <strong>Date:</strong>
-            <%= item.date.toDateString() %>
-        </p>
-
-        <p>
-            <strong>Type:</strong>
-            <%= item.type %>
+            <i class="bi bi-calendar3"></i>
+            <span><strong>Date:</strong> <%= item.date.toDateString() %></span>
         </p>
 
         <% if (item.owner) { %>
 
             <p>
-                <strong>Posted by:</strong>
-                <%= item.owner.username %>
+                <i class="bi bi-person"></i>
+                <span><strong>Posted by:</strong> <%= item.owner.username %></span>
             </p>
 
         <% } %>
 
-        <% if (item.owner._id.equals(user._id)) { %>
+        <div class="item-details-actions">
+
+            <% if (item.owner._id.equals(user._id)) { %>
+
+                <a
+                    class="action-link"
+                    href="/items/<%= item._id %>/edit"
+                >
+                    <i class="bi bi-pencil-square"></i>
+                    Edit Item
+                </a>
+
+            <% } %>
 
             <a
-                class="action-link"
-                href="/items/<%= item._id %>/edit"
+                class="action-link action-link-secondary"
+                href="/items/all-items"
             >
-                Edit Item
+                <i class="bi bi-arrow-left"></i>
+                Back to all items
             </a>
 
-        <% } %>
+            <a
+                class="action-link action-link-secondary"
+                href="/items/<%= item._id %>/pdf"
+                target="_blank"
+            >
+                <i class="bi bi-file-earmark-pdf"></i>
+                Download PDF
+            </a>
 
-        <a
-            class="action-link"
-            href="/items/all-items"
-        >
-            Back to all items
-        </a>
-
-        <br><br>
+        </div>
 
         <% if (user && !item.owner._id.equals(user._id)) { %>
 
             <% if(isClaimed){ %>
-                <h2>This Item has been claimed</h2>
+
+                <h2>
+                    <i class="bi bi-check-circle-fill"></i>
+                    This item has been claimed
+                </h2>
+
             <% }else{ %>
+
                 <form
-                action="/claims/create/<%= item._id %>"
-                method="POST"
-            >
-
-                <label for="message">
-                    Why do you think this item belongs to you?
-                </label>
-
-                <input
-                    id="message"
-                    type="text"
-                    name="message"
-                    maxlength="500"
-                    required
+                    action="/claims/create/<%= item._id %>"
+                    method="POST"
                 >
 
-                <button type="submit">
-                    Claim Item
-                </button>
+                    <label for="message">
+                        <i class="bi bi-chat-left-text"></i>
+                        Why do you think this item belongs to you?
+                    </label>
 
-            </form>
-            <%  }%>
-            
+                    <input
+                        id="message"
+                        type="text"
+                        name="message"
+                        maxlength="500"
+                        required
+                    >
+
+                    <button type="submit">
+                        <i class="bi bi-send"></i>
+                        Claim Item
+                    </button>
+
+                </form>
+
+            <% } %>
+
 
         <% } %>
 

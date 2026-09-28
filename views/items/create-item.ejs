@@ -12,6 +12,17 @@
     rel="stylesheet"
 >
 
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
 <link rel="stylesheet" href="/css/style.css">
 
 <link
@@ -27,17 +38,32 @@
 
     <div class="container">
 
-        <h1>Report Lost or Found Item</h1>
+        <div class="form-header">
+            <span class="icon-circle icon-circle-lg">
+                <i class="bi bi-clipboard-plus"></i>
+            </span>
+            <h1>Report Lost or Found Item</h1>
+            <p class="text-muted">Fill in the details below — the more specific, the easier it is to match.</p>
+        </div>
 
         <form action="/items/create" method="POST" enctype="multipart/form-data">
 
-            <label for="title">Item Name:</label>
+            <label for="title">
+                <i class="bi bi-tag"></i>
+                Item Name:
+            </label>
             <input type="text" id="title" name="title" required>
 
-            <label for="description">Description:</label>
+            <label for="description">
+                <i class="bi bi-card-text"></i>
+                Description:
+            </label>
             <textarea id="description" name="description" required></textarea>
 
-            <label for="category">Category:</label>
+            <label for="category">
+                <i class="bi bi-grid"></i>
+                Category:
+            </label>
             <select id="category" name="category" required>
 
                 <option value="">Select a category</option>
@@ -49,13 +75,22 @@
 
             </select>
 
-            <label for="location">Location:</label>
+            <label for="location">
+                <i class="bi bi-geo-alt"></i>
+                Location:
+            </label>
             <input type="text" id="location" name="location" required>
 
-            <label for="date">Date:</label>
+            <label for="date">
+                <i class="bi bi-calendar3"></i>
+                Date:
+            </label>
             <input type="date" id="date" name="date" required>
 
-            <label for="type">Item Type:</label>
+            <label for="type">
+                <i class="bi bi-arrow-left-right"></i>
+                Item Type:
+            </label>
             <select id="type" name="type" required>
 
                 <option value="">Select type</option>
@@ -64,10 +99,16 @@
 
             </select>
 
-            <label for="image">Image:</label>
+            <label for="image">
+                <i class="bi bi-image"></i>
+                Image:
+            </label>
             <input type="file" id="image" name="image">
 
-            <button type="submit">Submit Item</button>
+            <button type="submit">
+                <i class="bi bi-check2-circle"></i>
+                Submit Item
+            </button>
 
         </form>
 

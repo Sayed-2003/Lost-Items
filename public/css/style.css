@@ -15,8 +15,16 @@
     --lf-slate: #64748b;
     --lf-border: #e2e8f0;
     --lf-danger: #dc2626;
+    --lf-danger-bg: #fee2e2;
     --lf-success: #16a34a;
+    --lf-success-bg: #dcfce7;
     --lf-warning: #d97706;
+    --lf-amber-bg: #fef3c7;
+
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --radius-pill: 999px;
 }
 
 
@@ -29,12 +37,7 @@ body {
     background: var(--lf-background);
     color: var(--lf-navy);
 
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
     min-height: 100vh;
 }
@@ -42,13 +45,10 @@ body {
 
 /* ---------- Headings ---------- */
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1, h2, h3, h4, h5 {
     color: var(--lf-navy);
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 
@@ -56,6 +56,15 @@ h5 {
 
 a {
     text-decoration: none;
+}
+
+.btn i.bi {
+    margin-right: 0.45rem;
+}
+
+.btn {
+    border-radius: var(--radius-sm);
+    font-weight: 600;
 }
 
 
@@ -66,16 +75,33 @@ a {
 .site-navbar {
     background: var(--lf-navy);
     box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 .site-navbar .navbar-brand {
     color: white;
     font-weight: 800;
     font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .site-navbar .navbar-brand:hover {
     color: #dbeafe;
+}
+
+.brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    background: var(--lf-blue);
+    color: white;
+    font-size: 1.1rem;
 }
 
 .site-navbar .nav-link {
@@ -84,13 +110,27 @@ a {
     margin-left: 5px;
     margin-right: 5px;
 
-    border-radius: 8px;
-    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.15s ease;
+}
+
+.site-navbar .nav-link i.bi {
+    font-size: 1rem;
 }
 
 .site-navbar .nav-link:hover {
     color: white;
     background: rgba(255, 255, 255, 0.08);
+}
+
+.site-navbar .nav-link.logout-link:hover {
+    background: rgba(220, 38, 38, 0.18);
+    color: #fecaca;
 }
 
 .site-navbar .navbar-toggler {
@@ -105,18 +145,26 @@ a {
 .admin-navbar {
     background: #020617;
     box-shadow: 0 4px 18px rgba(2, 6, 23, 0.2);
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 .admin-navbar .navbar-brand {
     color: white;
     font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .admin-navbar .nav-link {
     color: #cbd5e1;
     font-weight: 500;
-    border-radius: 8px;
-    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .admin-navbar .nav-link:hover {
@@ -157,13 +205,21 @@ a {
 form label {
     font-weight: 600;
     color: var(--lf-navy);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+form label i.bi {
+    color: var(--lf-blue);
+    font-size: 0.95rem;
 }
 
 form input,
 form textarea,
 form select {
     border: 1px solid var(--lf-border);
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     transition: 0.2s ease;
 }
 
@@ -177,21 +233,121 @@ form select:focus {
 
 
 /* =========================================================
-   GLOBAL STATUS BADGES
+   GLOBAL STATUS / TYPE BADGES
    ========================================================= */
 
-.status {
-    display: inline-block;
+.status,
+.pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 
-    padding: 6px 12px;
+    padding: 6px 13px;
 
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
 
     background: #e2e8f0;
     color: var(--lf-navy);
 
     font-size: 0.85rem;
     font-weight: 700;
+}
+
+.pill-badge i.bi {
+    font-size: 0.9rem;
+}
+
+/* Claim status variants */
+.status-pending, .pill-badge.status-pending {
+    background: var(--lf-amber-bg);
+    color: var(--lf-warning);
+}
+
+.status-approved, .pill-badge.status-approved {
+    background: var(--lf-success-bg);
+    color: var(--lf-success);
+}
+
+.status-rejected, .pill-badge.status-rejected {
+    background: var(--lf-danger-bg);
+    color: var(--lf-danger);
+}
+
+/* Item type variants */
+.badge-lost {
+    background: var(--lf-amber-bg);
+    color: var(--lf-warning);
+}
+
+.badge-found {
+    background: var(--lf-success-bg);
+    color: var(--lf-success);
+}
+
+/* Category chip */
+.category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--lf-slate);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.category-chip i.bi {
+    color: var(--lf-blue);
+}
+
+
+/* =========================================================
+   ICON CIRCLES
+   ========================================================= */
+
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--lf-blue);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.icon-circle-lg {
+    width: 64px;
+    height: 64px;
+    font-size: 1.7rem;
+}
+
+.icon-circle-navy {
+    background: var(--lf-navy);
+    color: white;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--lf-slate);
+}
+
+.empty-state .icon-circle {
+    margin: 0 auto 18px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.6rem;
+}
+
+.empty-state h5 {
+    color: var(--lf-navy);
+    margin-bottom: 6px;
 }
 
 
@@ -207,6 +363,12 @@ form select:focus {
     background: var(--lf-navy);
     color: white;
     border-color: var(--lf-navy);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.table thead th i.bi {
+    margin-right: 6px;
 }
 
 .table tbody tr {
@@ -228,40 +390,136 @@ img {
 
 
 /* =========================================================
-   HOMEPAGE
+   HERO (HOMEPAGE)
    ========================================================= */
 
-.homepage {
-    min-height: calc(100vh - 70px);
+.hero {
+    position: relative;
+    min-height: calc(100vh - 74px);
 
     display: flex;
-    flex-direction: column;
-
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    text-align: center;
+    overflow: hidden;
 
-    padding: 40px 20px;
-
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(37, 99, 235, 0.12),
-            transparent 35%
-        );
+    background: var(--lf-navy);
 }
 
-.homepage h1 {
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    max-width: 850px;
+.hero-icons {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hero-icon {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.07);
+    font-size: 6rem;
+}
+
+.hero-icon-1 { top: 12%; left: 8%;  font-size: 5rem;  transform: rotate(-12deg); }
+.hero-icon-2 { top: 65%; left: 12%; font-size: 4rem;  transform: rotate(10deg); }
+.hero-icon-3 { top: 20%; right: 10%; font-size: 4.5rem; transform: rotate(15deg); }
+.hero-icon-4 { top: 70%; right: 14%; font-size: 5.5rem; transform: rotate(-8deg); }
+.hero-icon-5 { top: 40%; left: 45%;  font-size: 3.5rem; transform: rotate(20deg); }
+.hero-icon-6 { top: 5%;  right: 38%; font-size: 3rem;   transform: rotate(-15deg); }
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    text-align: center;
+    padding: 40px 24px;
+}
+
+.hero-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    background: var(--lf-blue);
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+}
+
+.hero-content h1 {
+    color: white;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     margin-bottom: 20px;
 }
 
-.homepage p {
+.hero-content p {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 34px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-actions .btn {
+    padding: 12px 26px;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+}
+
+
+/* =========================================================
+   HOW IT WORKS (STEPS)
+   ========================================================= */
+
+.steps-section {
+    max-width: 1100px;
+    margin: 90px auto;
+    padding: 0 24px;
+}
+
+.steps-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 45px;
+}
+
+.step-card {
+    height: 100%;
+    background: white;
+    border: 1px solid var(--lf-border);
+    border-radius: var(--radius-lg);
+    padding: 32px 26px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.step-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--lf-blue);
+    margin-bottom: 14px;
+}
+
+.step-card .icon-circle {
+    margin-bottom: 16px;
+}
+
+.step-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.step-card p {
     color: var(--lf-slate);
-    font-size: 1.15rem;
-    max-width: 650px;
+    line-height: 1.6;
+    margin: 0;
 }
 
 
@@ -275,6 +533,10 @@ img {
     .admin-navbar .nav-link {
         margin-top: 4px;
         margin-bottom: 4px;
+    }
+
+    .hero-icon {
+        display: none;
     }
 
 }

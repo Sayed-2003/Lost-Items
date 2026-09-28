@@ -17,6 +17,19 @@
         rel="stylesheet"
     >
 
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
     <!-- Global CSS -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -25,17 +38,94 @@
 
     <%- include('./partials/navbar') %>
 
-    <main class="homepage">
+    <section class="hero">
 
-        <h1>Welcome to Campus Lost & Found</h1>
+        <div class="hero-icons" aria-hidden="true">
+            <i class="bi bi-key hero-icon hero-icon-1"></i>
+            <i class="bi bi-backpack2 hero-icon hero-icon-2"></i>
+            <i class="bi bi-phone hero-icon hero-icon-3"></i>
+            <i class="bi bi-wallet2 hero-icon hero-icon-4"></i>
+            <i class="bi bi-umbrella hero-icon hero-icon-5"></i>
+            <i class="bi bi-watch hero-icon hero-icon-6"></i>
+        </div>
 
-        <p>Find lost items or report something you've found on campus.</p>
+        <div class="hero-content">
 
-    </main>
+            <span class="hero-icon-badge">
+                <i class="bi bi-compass"></i>
+            </span>
+
+            <h1>Lost something on campus? Someone probably found it.</h1>
+
+            <p>
+                Report what you've lost or found, browse the current list,
+                and reconnect items with their owners — all in one place.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="/items/all-items" class="btn btn-primary btn-lg">
+                    <i class="bi bi-search"></i>
+                    Browse Items
+                </a>
+
+                <a href="/items/create" class="btn btn-outline-light btn-lg">
+                    <i class="bi bi-plus-circle"></i>
+                    Report an Item
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="steps-section">
+
+        <h2>How it works</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">STEP 01</div>
+                    <span class="icon-circle icon-circle-lg">
+                        <i class="bi bi-megaphone"></i>
+                    </span>
+                    <h3>Report</h3>
+                    <p>Lost something, or found something that isn't yours? Post the details in a minute.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">STEP 02</div>
+                    <span class="icon-circle icon-circle-lg">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <h3>Browse</h3>
+                    <p>Search the list of lost and found items reported by others across campus.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">STEP 03</div>
+                    <span class="icon-circle icon-circle-lg">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                    </span>
+                    <h3>Reclaim</h3>
+                    <p>Submit a claim, get verified by the finder, and get your item back.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
 
     <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
 

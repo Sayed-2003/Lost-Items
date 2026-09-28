@@ -14,10 +14,17 @@ body:has(.approve-button) > .container {
 }
 
 
-body:has(.approve-button) .container > h1 {
-    font-size: 2.5rem;
+.claims-page-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
 
-    margin-bottom: 30px;
+.claims-page-header .icon-circle {
+    margin-bottom: 14px;
+}
+
+.claims-page-header h1 {
+    font-size: 2.3rem;
 }
 
 
@@ -28,7 +35,7 @@ body:has(.approve-button) .claim-card {
 
     border: 1px solid var(--lf-border);
 
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
 
     padding: 25px;
 
@@ -36,6 +43,19 @@ body:has(.approve-button) .claim-card {
 
     box-shadow:
         0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+body:has(.approve-button) .claim-card p {
+    color: var(--lf-slate);
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+body:has(.approve-button) .claim-card p i.bi {
+    color: var(--lf-blue);
+    margin-top: 3px;
 }
 
 
@@ -49,7 +69,7 @@ body:has(.approve-button) .claim-card img {
 
     object-fit: cover;
 
-    border-radius: 14px;
+    border-radius: var(--radius-md);
 
     margin: 15px 0;
 }
@@ -57,19 +77,26 @@ body:has(.approve-button) .claim-card img {
 
 /* ---------- Buttons ---------- */
 
+.claim-actions {
+    display: flex;
+    gap: 10px;
+}
+
 .approve-button,
 .reject-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
     border: none;
 
     padding: 10px 18px;
 
-    border-radius: 9px;
+    border-radius: var(--radius-sm);
 
     font-weight: 700;
 
     cursor: pointer;
-
-    margin-right: 8px;
 
     margin-top: 10px;
 
@@ -78,7 +105,7 @@ body:has(.approve-button) .claim-card img {
 
 
 .approve-button {
-    background: #dcfce7;
+    background: var(--lf-success-bg);
     color: #166534;
 }
 
@@ -88,7 +115,7 @@ body:has(.approve-button) .claim-card img {
 
 
 .reject-button {
-    background: #fee2e2;
+    background: var(--lf-danger-bg);
     color: #991b1b;
 }
 

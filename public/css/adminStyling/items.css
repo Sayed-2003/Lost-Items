@@ -22,16 +22,21 @@ body {
 
 
 .admin-page-header h1 {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
 
     font-weight: 800;
 
-    color: #0f172a;
+    color: var(--lf-navy);
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 
 .admin-page-header p {
     font-size: 1.05rem;
+    margin-top: 8px;
 }
 
 
@@ -40,9 +45,9 @@ body {
 .admin-table-container {
     background: white;
 
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--lf-border);
 
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
 
     padding: 20px;
 
@@ -53,23 +58,4 @@ body {
 
 .admin-table {
     margin-bottom: 0;
-}
-
-
-/* ---------- Item Type ---------- */
-
-.admin-item-type {
-    display: inline-block;
-
-    padding: 6px 13px;
-
-    border-radius: 999px;
-
-    background: #e0e7ff;
-
-    color: #3730a3;
-
-    font-size: 0.85rem;
-
-    font-weight: 700;
 }

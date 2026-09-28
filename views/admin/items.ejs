@@ -20,6 +20,18 @@
         rel="stylesheet"
     >
 
+    <!-- Bootstrap Icons -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Global Styling -->
 
@@ -41,6 +53,14 @@
 
 <body>
 
+    <% const categoryIcons = {
+        Electronics: 'bi-laptop',
+        Clothing: 'bi-bag',
+        Documents: 'bi-file-earmark-text',
+        Accessories: 'bi-watch',
+        Other: 'bi-box-seam'
+    }; %>
+
     <%- include('../partials/admin-navbar') %>
 
 
@@ -54,6 +74,7 @@
         <div class="admin-page-header">
 
             <h1>
+                <i class="bi bi-box-seam"></i>
                 Manage Items
             </h1>
 
@@ -72,13 +93,27 @@
             href="/admin/dashboard"
             class="btn btn-dark mb-4"
         >
-            ← Back to Dashboard
+            <i class="bi bi-arrow-left"></i>
+            Back to Dashboard
         </a>
 
 
         <!-- =========================
              ITEMS TABLE
              ========================= -->
+
+        <% if (items.length === 0) { %>
+
+            <div class="admin-table-container">
+                <div class="empty-state">
+                    <span class="icon-circle">
+                        <i class="bi bi-inbox"></i>
+                    </span>
+                    <p class="text-muted mb-0">No items have been submitted yet.</p>
+                </div>
+            </div>
+
+        <% } else { %>
 
         <div class="admin-table-container">
 
@@ -91,22 +126,27 @@
                         <tr>
 
                             <th>
+                                <i class="bi bi-tag"></i>
                                 Title
                             </th>
 
                             <th>
+                                <i class="bi bi-arrow-left-right"></i>
                                 Type
                             </th>
 
                             <th>
+                                <i class="bi bi-grid"></i>
                                 Category
                             </th>
 
                             <th>
+                                <i class="bi bi-geo-alt"></i>
                                 Location
                             </th>
 
                             <th>
+                                <i class="bi bi-person"></i>
                                 Owner
                             </th>
 
@@ -137,8 +177,9 @@
 
                                 <td>
 
-                                    <span class="admin-item-type">
+                                    <span class="pill-badge <%= item.type === 'Lost' ? 'badge-lost' : 'badge-found' %>">
 
+                                        <i class="bi <%= item.type === 'Lost' ? 'bi-search' : 'bi-box-seam' %>"></i>
                                         <%= item.type %>
 
                                     </span>
@@ -150,7 +191,10 @@
 
                                 <td>
 
-                                    <%= item.category %>
+                                    <span class="category-chip">
+                                        <i class="bi <%= categoryIcons[item.category] || 'bi-box-seam' %>"></i>
+                                        <%= item.category %>
+                                    </span>
 
                                 </td>
 
@@ -184,6 +228,8 @@
             </div>
 
         </div>
+
+        <% } %>
 
 
     </main>

@@ -1,11 +1,14 @@
-<nav class="navbar navbar-expand-lg site-navbar">
+<nav class="navbar navbar-expand-lg site-navbar" data-bs-theme="dark">
     <div class="container">
 
         <!-- Brand -->
-        <a
+        <a 
             class="navbar-brand"
             href="/"
         >
+            <span class="brand-icon">
+                <i class="bi bi-compass"></i>
+            </span>
             Campus Lost & Found
         </a>
 
@@ -38,10 +41,11 @@
 
                     <!-- All Items -->
                     <li class="nav-item">
-                        <a
+                        <a 
                             class="nav-link"
                             href="/items/all-items"
                         >
+                            <i class="bi bi-grid"></i>
                             All Items
                         </a>
                     </li>
@@ -49,10 +53,11 @@
 
                     <!-- Create Item -->
                     <li class="nav-item">
-                        <a
+                        <a 
                             class="nav-link"
                             href="/items/create"
                         >
+                            <i class="bi bi-plus-circle"></i>
                             Create Item
                         </a>
                     </li>
@@ -60,10 +65,11 @@
 
                     <!-- My Claims -->
                     <li class="nav-item">
-                        <a
+                        <a 
                             class="nav-link"
                             href="/claims/my-claims"
                         >
+                            <i class="bi bi-bookmark-check"></i>
                             My Claims
                         </a>
                     </li>
@@ -71,10 +77,11 @@
 
                     <!-- Requests -->
                     <li class="nav-item">
-                        <a
+                        <a 
                             class="nav-link"
                             href="/claims/requests"
                         >
+                            <i class="bi bi-inbox"></i>
                             Requests
                         </a>
                     </li>
@@ -84,10 +91,11 @@
                     <% if (user.role === 'admin') { %>
 
                         <li class="nav-item">
-                            <a
+                            <a 
                                 class="nav-link admin-nav-link"
                                 href="/admin/dashboard"
                             >
+                                <i class="bi bi-speedometer2"></i>
                                 Admin Dashboard
                             </a>
                         </li>
@@ -97,10 +105,11 @@
 
                     <!-- Logout -->
                     <li class="nav-item">
-                        <a
+                        <a 
                             class="nav-link logout-link"
                             href="/auth/sign-out"
                         >
+                            <i class="bi bi-box-arrow-right"></i>
                             Logout
                         </a>
                     </li>
@@ -111,10 +120,11 @@
 
                     <!-- Sign Up -->
                     <li class="nav-item">
-                        <a
+                        <a 
                             class="nav-link"
                             href="/auth/sign-up"
                         >
+                            <i class="bi bi-person-plus"></i>
                             Sign Up
                         </a>
                     </li>
@@ -126,6 +136,7 @@
                             class="nav-link"
                             href="/auth/sign-in"
                         >
+                            <i class="bi bi-box-arrow-in-right"></i>
                             Login
                         </a>
                     </li>
