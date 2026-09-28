@@ -1,0 +1,128 @@
+/* =========================================================
+   EDIT ITEM PAGE
+   ========================================================= */
+
+body:has(form[action*="?_method=PUT"]) {
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eef2ff
+        );
+}
+
+
+/* ---------- Container ---------- */
+
+body:has(form[action*="?_method=PUT"]) > .container {
+    max-width: 800px;
+
+    margin: 50px auto;
+
+    padding: 40px;
+
+    background: white;
+
+    border: 1px solid var(--lf-border);
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ---------- Heading ---------- */
+
+body:has(form[action*="?_method=PUT"]) > .container h1 {
+    text-align: center;
+
+    font-size: 2.3rem;
+
+    margin-bottom: 35px;
+}
+
+
+/* ---------- Form ---------- */
+
+body:has(form[action*="?_method=PUT"]) > .container form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* ---------- Inputs ---------- */
+
+body:has(form[action*="?_method=PUT"]) > .container input,
+body:has(form[action*="?_method=PUT"]) > .container textarea,
+body:has(form[action*="?_method=PUT"]) > .container select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    margin-bottom: 15px;
+
+    background: #f8fafc;
+}
+
+
+/* ---------- Textarea ---------- */
+
+body:has(form[action*="?_method=PUT"]) > .container textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+
+/* ---------- Original Image ---------- */
+
+body:has(form[action*="?_method=PUT"]) > .container form img {
+    width: 100%;
+    max-height: 350px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    border: 1px solid var(--lf-border);
+
+    margin-bottom: 20px;
+}
+
+
+/* ---------- Submit ---------- */
+
+body:has(form[action*="?_method=PUT"]) > .container button {
+    border: none;
+
+    background: var(--lf-blue);
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+body:has(form[action*="?_method=PUT"]) > .container button:hover {
+    background: var(--lf-blue-dark);
+    transform: translateY(-2px);
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+    body:has(form[action*="?_method=PUT"]) > .container {
+        margin: 25px 15px;
+        padding: 25px;
+    }
+
+}

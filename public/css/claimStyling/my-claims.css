@@ -1,0 +1,104 @@
+/* =========================================================
+   MY CLAIMS
+   ========================================================= */
+
+body:has(.claim-card) {
+    background: #f8fafc;
+}
+
+
+body:has(.claim-card) > .container {
+    max-width: 1000px;
+
+    margin: 45px auto;
+}
+
+
+body:has(.claim-card) .container > h1 {
+    font-size: 2.5rem;
+
+    margin-bottom: 30px;
+}
+
+
+/* ---------- Claim Card ---------- */
+
+.claim-card {
+    background: white;
+
+    border: 1px solid var(--lf-border);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+
+    transition: 0.2s ease;
+}
+
+.claim-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(15, 23, 42, 0.1);
+}
+
+
+/* ---------- Image ---------- */
+
+.claim-card img {
+    width: 220px;
+    height: 160px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    margin: 15px 0;
+}
+
+
+/* ---------- Information ---------- */
+
+.claim-card p {
+    color: var(--lf-slate);
+
+    line-height: 1.6;
+}
+
+.claim-card strong {
+    color: var(--lf-navy);
+}
+
+
+/* ---------- Status ---------- */
+
+.claim-card .status {
+    margin-left: 5px;
+}
+
+
+/* ---------- View Item ---------- */
+
+.claim-card .action-link {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    background: var(--lf-blue);
+    color: white;
+
+    padding: 10px 16px;
+
+    border-radius: 9px;
+
+    font-weight: 600;
+}
+
+.claim-card .action-link:hover {
+    background: var(--lf-blue-dark);
+}

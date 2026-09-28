@@ -1,0 +1,147 @@
+/* =========================================================
+   ITEM DETAILS PAGE
+   ========================================================= */
+
+.item-details {
+    max-width: 900px;
+
+    margin: 50px auto;
+
+    padding: 40px;
+
+    background: white;
+
+    border: 1px solid var(--lf-border);
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ---------- Title ---------- */
+
+.item-details h1 {
+    font-size: 2.5rem;
+
+    margin-bottom: 30px;
+}
+
+
+/* ---------- Main Image ---------- */
+
+.item-details > img {
+    width: 100%;
+    max-height: 450px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    margin-bottom: 30px;
+}
+
+
+/* ---------- Information ---------- */
+
+.item-details p {
+    padding: 14px 0;
+
+    margin: 0;
+
+    color: var(--lf-slate);
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.item-details p strong {
+    color: var(--lf-navy);
+}
+
+
+/* ---------- Links ---------- */
+
+.item-details .action-link {
+    margin-top: 25px;
+    margin-right: 10px;
+}
+
+
+/* ---------- Claimed ---------- */
+
+.item-details h2 {
+    margin-top: 30px;
+
+    padding: 20px;
+
+    background: #fef3c7;
+    color: #92400e;
+
+    border-radius: 12px;
+
+    font-size: 1.1rem;
+}
+
+
+/* ---------- Claim Form ---------- */
+
+.item-details form {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: #f8fafc;
+
+    border-radius: 15px;
+
+    border: 1px solid var(--lf-border);
+}
+
+.item-details form label {
+    display: block;
+
+    margin-bottom: 10px;
+}
+
+.item-details form input {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 15px;
+}
+
+.item-details form button {
+    border: none;
+
+    background: var(--lf-blue);
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.item-details form button:hover {
+    background: var(--lf-blue-dark);
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+    .item-details {
+        margin: 25px 15px;
+        padding: 25px;
+    }
+
+    .item-details h1 {
+        font-size: 2rem;
+    }
+
+}

@@ -1,57 +1,142 @@
-<nav class="navbar">
+<nav class="navbar navbar-expand-lg site-navbar">
+    <div class="container">
 
-    <div class="container-fluid">
-
-        <a class="navbar-brand" href="/">
+        <!-- Brand -->
+        <a
+            class="navbar-brand"
+            href="/"
+        >
             Campus Lost & Found
         </a>
 
-        <div class="navbar-nav">
 
-            <% if (user) { %>
+        <!-- Mobile Toggle -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <a class="nav-link" href="/items/all-items">
-                    All Items
-                </a>
 
-                <a class="nav-link" href="/items/create">
-                    Create Item
-                </a>
+        <!-- Navbar Content -->
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar"
+        >
 
-                <a class="nav-link" href="/claims/my-claims">
-                    My Claims
-                </a>
+            <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                <a class="nav-link" href="/claims/requests">
-                    Requests
-                </a>
 
-                <% if (user.role === 'admin') { %>
+                <% if (user) { %>
 
-                    <a class="nav-link" href="/admin/dashboard">
-                        Admin Dashboard
-                    </a>
+
+                    <!-- All Items -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/items/all-items"
+                        >
+                            All Items
+                        </a>
+                    </li>
+
+
+                    <!-- Create Item -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/items/create"
+                        >
+                            Create Item
+                        </a>
+                    </li>
+
+
+                    <!-- My Claims -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/claims/my-claims"
+                        >
+                            My Claims
+                        </a>
+                    </li>
+
+
+                    <!-- Requests -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/claims/requests"
+                        >
+                            Requests
+                        </a>
+                    </li>
+
+
+                    <!-- Admin Dashboard -->
+                    <% if (user.role === 'admin') { %>
+
+                        <li class="nav-item">
+                            <a
+                                class="nav-link admin-nav-link"
+                                href="/admin/dashboard"
+                            >
+                                Admin Dashboard
+                            </a>
+                        </li>
+
+                    <% } %>
+
+
+                    <!-- Logout -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link logout-link"
+                            href="/auth/sign-out"
+                        >
+                            Logout
+                        </a>
+                    </li>
+
+
+                <% } else { %>
+
+
+                    <!-- Sign Up -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/auth/sign-up"
+                        >
+                            Sign Up
+                        </a>
+                    </li>
+
+
+                    <!-- Login -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/auth/sign-in"
+                        >
+                            Login
+                        </a>
+                    </li>
+
 
                 <% } %>
 
-                <a class="nav-link" href="/auth/sign-out">
-                    Logout
-                </a>
 
-            <% } else { %>
-
-                <a class="nav-link" href="/auth/sign-up">
-                    Sign up
-                </a>
-
-                <a class="nav-link" href="/auth/sign-in">
-                    Login
-                </a>
-
-            <% } %>
+            </ul>
 
         </div>
 
     </div>
-
 </nav>
