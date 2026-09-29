@@ -78,7 +78,7 @@ router.get('/:id/pdf', async (req, res) => {
 })
 
 // display each user item 
-router.get('/:id', async (req, res) => {
+router.get('/:id',isSignedIn, async (req, res) => {
     try {
         const foundItem = await Item.findOne({ _id: req.params.id, isDeleted: false }).populate('owner')
 
