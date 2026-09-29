@@ -7,6 +7,12 @@ A web application that helps students report, find, and recover lost items on ca
 Campus Lost & Found lets users create accounts, post lost or found items with photos, browse everything reported so far, and submit claims for items they believe belong to them. Item owners can manage their own listings and approve or reject incoming claims. Admins get a separate dashboard with system statistics and an overview of all users, items, and claims. Any item can also be exported as a formatted PDF.
 
 ## Screenshots
+1. HomePage
+![HomePage](./README-PIC/image.png)
+2. All Found and Lost Items
+![allItems](./README-PIC/image-1.png)
+3. Item Details
+![ItemDetails](./README-PIC/image-2.png)
 
 ## Technologies Used
 **Backend**
