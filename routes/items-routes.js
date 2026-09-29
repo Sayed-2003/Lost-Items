@@ -124,9 +124,11 @@ router.put('/:id', isSignedIn, upload.single('image'), async (req, res) => {
                 location,
                 date,
                 type,
-                image
+                image: req.file ? `/uploads/${req.file.filename}` : null,
+                
             }, { new: true }
         )
+        
 
         console.log(updatedItem);
 
