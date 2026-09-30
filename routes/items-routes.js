@@ -113,29 +113,21 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
 
 router.put('/:id', isSignedIn, upload.single('image'), async (req, res) => {
     try {
-        const { title, description, category, location, date, type, image } = req.body
+        const { title, description, category, location, date, type } = req.body
         const { id } = req.params
 
-        const updatedItem = await Item.findByIdAndUpdate(id,
-            {
-                title,
-                description,
-                category,
-                location,
-                date,
-                type,
-                image: req.file ? `/uploads/${req.file.filename}` : null,
-                
-            }, { new: true }
-        )
-        
+        const updateData = { title, description, category, location, date, type }
 
-        console.log(updatedItem);
+        if (req.file) {
+            updateData.image = `/uploads/${req.file.filename}`
+        }
+
+        await Item.findByIdAndUpdate(id, updateData, { new: true })
 
         res.redirect('/items')
-
     } catch (error) {
         console.log(error)
+        res.status(500).send('Something went wrong')
     }
 })
 
